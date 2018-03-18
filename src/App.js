@@ -1,11 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import 'bulma/css/bulma.css';
 
-class App extends Component {
-  render() {
-    return (
-      'Hello World'
-    );
-  }
-}
+const App = () => <p>'Hello World!'</p>;
 
 export default App;
