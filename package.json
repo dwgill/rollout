@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.6.2",
+    "classnames": "^2.2.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
