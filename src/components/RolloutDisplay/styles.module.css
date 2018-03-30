@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
+
+.resultText { 
+    font-family: 'Architects Daughter', cursive;
+    composes: is-size-3 from global;
+    composes: has-text-grey-darker from global;
+}
+
+.results {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}

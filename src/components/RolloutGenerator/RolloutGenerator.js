@@ -2,6 +2,7 @@ import React from 'react';
 import RollTypeSelector from '../RollTypeSelector';
 import styles from './styles.module.css';
 import DisplaySettings from '../DisplaySettings';
+import RolloutDisplay from '../RolloutDisplay';
 
 /** @type React.SFC<{}> */
 const AttributeGenerator = () => (
@@ -19,7 +20,7 @@ const AttributeGenerator = () => (
         </div>
         <div className={styles.rightSide}>
             <div className={styles.rolloutResult}>
-                <p>See the results.</p>
+                <RolloutDisplay />
             </div>
         </div>
     </div>
