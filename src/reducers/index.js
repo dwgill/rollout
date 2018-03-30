@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import attributeRollTypeReducer from './attributeRollType';
+import displaySettingsReducer from './displaySettings';
 
 const consolidatedReducers = combineReducers({
     attributeRollType: attributeRollTypeReducer,
-    // rolloutGuarantees: null,
+    displaySettings: displaySettingsReducer,
     // displayConfig: null,
 });
 
