@@ -13,7 +13,7 @@ import { SET_ROLL_IN_ORDER } from './types';
  */
 const setRollInOrder = (shouldRollInOrder) => ({
     type: SET_ROLL_IN_ORDER,
-    payloaad: shouldRollInOrder,
+    payload: shouldRollInOrder,
 });
 
 export default setRollInOrder;

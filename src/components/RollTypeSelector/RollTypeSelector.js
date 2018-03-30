@@ -13,6 +13,4 @@ const mapDispatchToProps = {
     onSelectType: handleOnChange,
 };
 
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(RollTypeSelectorView);

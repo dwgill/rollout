@@ -1,6 +1,7 @@
 import React from 'react';
 import RollTypeSelector from '../RollTypeSelector';
 import styles from './styles.module.css';
+import DisplaySettings from '../DisplaySettings';
 
 /** @type React.SFC<{}> */
 const AttributeGenerator = () => (
@@ -13,11 +14,11 @@ const AttributeGenerator = () => (
                 <p>Guarantees</p>
             </div>
             <div className={styles.child}>
-                <p>Roll in order, show constituent rolls, etc.</p>
+                <DisplaySettings />
             </div>
         </div>
         <div className={styles.rightSide}>
-            <div className={styles.child}>
+            <div className={styles.rolloutResult}>
                 <p>See the results.</p>
             </div>
         </div>
