@@ -26,7 +26,13 @@
 }
 
 .rolloutResult {
-    composes: child;
+    composes: tile from global;
+    composes: box from global;
+    composes: is-child from global;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
     background-image: url(./linedpaper.png);
     background-repeat: repeat;
 }

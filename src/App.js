@@ -12,7 +12,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     reducers,
-    compose(applyMiddleware(...middleware)),
+    composeEnhancers(applyMiddleware(...middleware)),
 );
 
 const App = () => (

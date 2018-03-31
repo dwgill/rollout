@@ -16,7 +16,7 @@ export const standard = () => {
     const higher3d6 = pullAt(_4d6.indexOf(lowset1d6))(_4d6);
     return {
         constituents: higher3d6,
-        discarded: lowset1d6,
+        discarded: [lowset1d6],
     };
 }
 
