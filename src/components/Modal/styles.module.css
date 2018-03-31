@@ -1,0 +1,24 @@
+.modalShade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    background-color: black;
+    opacity: 0.5;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.modal {
+
+}
+
+:global(#modal-root):not(:empty) ~ :global(#root) {
+    filter: blur(3px);
+}

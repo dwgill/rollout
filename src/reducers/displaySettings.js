@@ -1,7 +1,7 @@
 import { SET_DISPLAY_DICE, SET_ROLL_IN_ORDER } from '../actions/types';
 
 const initialState = {
-    rollInOrder: false,
+    rollInOrder: true,
     displayDice: false,
 }
 
