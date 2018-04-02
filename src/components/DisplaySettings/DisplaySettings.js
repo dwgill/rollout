@@ -5,12 +5,12 @@ import DisplaySettingsView from './DisplaySettingsView';
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
 function handleSetDisplayDice(event) {
-  setDisplayDice(event.currentTarget.checked);
+  return setDisplayDice(event.currentTarget.checked);
 }
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
 function handleSetRollInOrder(event) {
-  setRollInOrder(event.currentTarget.checked);
+  return setRollInOrder(event.currentTarget.checked);
 }
 
 const mapStateToProps = ({

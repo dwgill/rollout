@@ -1,7 +1,5 @@
 import React from 'react';
 
-const AddReqModalInteriorView = ({}) => (
-    <p>{'<AddReqModalInteriorView />'}</p>
-);
+const AddReqModalInteriorView = ({}) => <p>{'<AddReqModalInteriorView />'}</p>;
 
 export default AddReqModalInteriorView;
