@@ -1,50 +1,50 @@
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
 
-.resultText { 
-    font-family: 'Architects Daughter', cursive;
+.resultText {
+  font-family: 'Architects Daughter', cursive;
 }
 
 .notStale {
-    composes: has-text-grey-darker from global;
+  composes: has-text-grey-darker from global;
 }
 
 .stale {
-    composes: has-text-grey from global;
+  composes: has-text-grey from global;
 }
 
 .singleRow {
-    composes: is-size-2 from global;
+  composes: is-size-2 from global;
 }
 
 .multipleRows {
-    composes: is-size-3 from global;
+  composes: is-size-3 from global;
 }
 
 .resultsContainer {
-    flex: 5 0;
+  flex: 5 0;
 
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .rolloutButtonContainer {
-    flex: 3 0;
+  flex: 3 0;
 
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-end;
-    align-items: flex-end;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .button {
-    composes: button from global;
-    composes: is-large from global;
-    composes: is-dark from global;
+  composes: button from global;
+  composes: is-large from global;
+  composes: is-dark from global;
 }
 
 .discardedDie {
-    font-style: normal;
-    text-decoration: line-through currentColor
+  font-style: normal;
+  text-decoration: line-through currentColor;
 }

@@ -6,6 +6,7 @@
     "bulma": "^0.6.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.5",
+    "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -19,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettify": "prettier --write \"{,!(node_modules|dist|build)/**/}*.{js,jsx,css}\""
   },
   "browserslist": {
     "development": [

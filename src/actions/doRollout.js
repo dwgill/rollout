@@ -2,18 +2,16 @@ import rollout from '../util/rollout';
 import { DO_ROLLOUT } from './types';
 
 const doRollout = () => (dispatch, getState) => {
-    const {
-        attributeRollType,
-    } = getState();
+  const { attributeRollType } = getState();
 
-    const newRollout = rollout({
-        rollType: attributeRollType,
-    });
+  const newRollout = rollout({
+    rollType: attributeRollType,
+  });
 
-    dispatch({
-        type: DO_ROLLOUT,
-        payload: newRollout,
-    });
+  dispatch({
+    type: DO_ROLLOUT,
+    payload: newRollout,
+  });
 };
 
 export default doRollout;

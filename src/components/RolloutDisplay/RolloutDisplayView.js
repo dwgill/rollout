@@ -14,41 +14,38 @@ import AttributeRows from './AttributeRows';
 
 /** @type React.SFC<RolloutDisplayViewProps> */
 const RolloutDisplayView = ({
-    attributesAreStale,
-    attributes,
-    onRollout: handleRollout,
-    displayDice,
-    showAtributeNames,
+  attributesAreStale,
+  attributes,
+  onRollout: handleRollout,
+  displayDice,
+  showAtributeNames,
 }) => (
-    <>
-        <div className={styles.resultsContainer}>
-            {showAtributeNames || displayDice
-                ? (
-                    <AttributeRows 
-                        attributesAreStale={attributesAreStale}
-                        attributes={attributes}
-                        displayDice={displayDice}
-                        showAtributeNames={showAtributeNames}
-                    />
-                )
-                : (
-                    <AttributeRow
-                        attributes={attributes}
-                        attributesAreStale={attributesAreStale}
-                    />
-                )
-            }
-        </div>
-        <div className={styles.rolloutButtonContainer}>
-            <button
-                className={styles.button}
-                onClick={handleRollout}
-                disabled={!attributesAreStale}
-            >
-                Rollout
-            </button>
-        </div>
-    </>
+  <>
+    <div className={styles.resultsContainer}>
+      {showAtributeNames || displayDice ? (
+        <AttributeRows
+          attributesAreStale={attributesAreStale}
+          attributes={attributes}
+          displayDice={displayDice}
+          showAtributeNames={showAtributeNames}
+        />
+      ) : (
+        <AttributeRow
+          attributes={attributes}
+          attributesAreStale={attributesAreStale}
+        />
+      )}
+    </div>
+    <div className={styles.rolloutButtonContainer}>
+      <button
+        className={styles.button}
+        onClick={handleRollout}
+        disabled={!attributesAreStale}
+      >
+        Rollout
+      </button>
+    </div>
+  </>
 );
 
 export default RolloutDisplayView;

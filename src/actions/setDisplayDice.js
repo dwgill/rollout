@@ -7,13 +7,13 @@ import { SET_DISPLAY_DICE } from './types';
  */
 
 /**
- * 
- * @param {string} shouldDisplayDice 
+ *
+ * @param {string} shouldDisplayDice
  * @returns {SET_DISPLAY_DICE} the action
  */
-const setDisplayDice = (shouldDisplayDice) => ({
-    type: SET_DISPLAY_DICE,
-    payload: shouldDisplayDice,
+const setDisplayDice = shouldDisplayDice => ({
+  type: SET_DISPLAY_DICE,
+  payload: shouldDisplayDice,
 });
 
 export default setDisplayDice;

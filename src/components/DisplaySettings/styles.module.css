@@ -1,4 +1,4 @@
 .label {
-    composes: checkbox from global;
-    composes: is-size-5 from global;
+  composes: checkbox from global;
+  composes: is-size-5 from global;
 }

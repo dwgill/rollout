@@ -8,25 +8,25 @@ import RequirementDisplay from '../RequirementDisplay';
 
 /** @type React.SFC<{}> */
 const AttributeGenerator = () => (
-    <div className={styles.container}>
-        <div className={styles.leftSide}>
-            <div className={styles.child}>
-                <RollTypeSelector />
-            </div>
-            <div className={styles.child}>
-                <RequirementDisplay />
-                {/* <Modal component={() => <p>Foo!</p>} /> */}
-            </div>
-            <div className={styles.child}>
-                <DisplaySettings />
-            </div>
-        </div>
-        <div className={styles.rightSide}>
-            <div className={styles.rolloutResult}>
-                <RolloutDisplay />
-            </div>
-        </div>
+  <div className={styles.container}>
+    <div className={styles.leftSide}>
+      <div className={styles.child}>
+        <RollTypeSelector />
+      </div>
+      <div className={styles.child}>
+        <RequirementDisplay />
+        {/* <Modal component={() => <p>Foo!</p>} /> */}
+      </div>
+      <div className={styles.child}>
+        <DisplaySettings />
+      </div>
     </div>
+    <div className={styles.rightSide}>
+      <div className={styles.rolloutResult}>
+        <RolloutDisplay />
+      </div>
+    </div>
+  </div>
 );
 
 export default AttributeGenerator;

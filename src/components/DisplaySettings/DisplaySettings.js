@@ -4,24 +4,27 @@ import setRollInOrder from '../../actions/setRollInOrder';
 import DisplaySettingsView from './DisplaySettingsView';
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
-const handleSetDisplayDice = (event) => setDisplayDice(event.currentTarget.checked);
+function handleSetDisplayDice(event) {
+  setDisplayDice(event.currentTarget.checked);
+}
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
-const handleSetRollInOrder = (event) => setRollInOrder(event.currentTarget.checked);
+function handleSetRollInOrder(event) {
+  setRollInOrder(event.currentTarget.checked);
+}
 
 const mapStateToProps = ({
-    displaySettings: {
-        rollInOrder,
-        displayDice,
-    }
+  displaySettings: { rollInOrder, displayDice },
 }) => ({
-    rollInOrder,
-    displayDice,
+  rollInOrder,
+  displayDice,
 });
 
 const mapDispatchToProps = {
-    onCheckDisplayDice: handleSetDisplayDice,
-    onCheckRollInOrder: handleSetRollInOrder,
+  onCheckDisplayDice: handleSetDisplayDice,
+  onCheckRollInOrder: handleSetRollInOrder,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DisplaySettingsView);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  DisplaySettingsView,
+);

@@ -3,14 +3,16 @@ import setAttributeRollType from '../../actions/setAttributeRollType';
 import RollTypeSelectorView from './RollTypeSelectorView';
 
 /** @param {React.FormEvent<HTMLSelectElement>} event */
-const handleOnChange = (event) => setAttributeRollType(event.currentTarget.value);
+const handleOnChange = event => setAttributeRollType(event.currentTarget.value);
 
 const mapStateToProps = ({ attributeRollType }) => ({
-    selectedType: attributeRollType,
+  selectedType: attributeRollType,
 });
 
 const mapDispatchToProps = {
-    onSelectType: handleOnChange,
+  onSelectType: handleOnChange,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RollTypeSelectorView);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  RollTypeSelectorView,
+);

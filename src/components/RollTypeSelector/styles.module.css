@@ -1,13 +1,13 @@
 .selectWrapper {
-    composes: select from global;
-    composes: is-medium from global;
-    margin-bottom: 1rem;
+  composes: select from global;
+  composes: is-medium from global;
+  margin-bottom: 1rem;
 }
 
 .selectElement {
-    width: 100%;
+  width: 100%;
 }
 
 .helpText {
-    composes: has-text-weight-normal from global;
+  composes: has-text-weight-normal from global;
 }
