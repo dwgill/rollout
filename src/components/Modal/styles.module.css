@@ -1,13 +1,14 @@
 .modalShade {
-    position: absolute;
+    position: fixed;
     top: 0;
-    bottom: 0;
+    height: 100%;
+    /* bottom: 0; */
     left: 0;
-    right: 0;
+    width: 100%;
+    /* right: 0; */
     z-index: 10;
 
-    background-color: black;
-    opacity: 0.5;
+    background-color: rgba(12,12,12,0.5);
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
@@ -15,8 +16,26 @@
     
 }
 
-.modal {
+.modalCommon {
+    composes: notification from global;
+}
 
+.modalDefault {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    max-width: 100%;
+    width: 30rem;
+}
+
+.closeBtn {
+    composes: delete from global;
+} 
+
+.button {
+    composes: button from global;
+    composes: is-medium from global;
 }
 
 :global(#modal-root):not(:empty) ~ :global(#root) {

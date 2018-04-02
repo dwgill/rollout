@@ -3,7 +3,8 @@ import RollTypeSelector from '../RollTypeSelector';
 import styles from './styles.module.css';
 import DisplaySettings from '../DisplaySettings';
 import RolloutDisplay from '../RolloutDisplay';
-import Modal from '../Modal';
+import RequirementDisplay from '../RequirementDisplay';
+// import Modal from '../Modal';
 
 /** @type React.SFC<{}> */
 const AttributeGenerator = () => (
@@ -13,7 +14,7 @@ const AttributeGenerator = () => (
                 <RollTypeSelector />
             </div>
             <div className={styles.child}>
-                <p>Guarantees</p>
+                <RequirementDisplay />
                 {/* <Modal component={() => <p>Foo!</p>} /> */}
             </div>
             <div className={styles.child}>
