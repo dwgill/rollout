@@ -9,8 +9,6 @@ const ogBasicRules =
 
 const adndRules = 'http://www.dmsguild.com/product/17003/Players-Handbook-1e';
 
-const lotfpRules = 'https://www.lotfp.com/RPG/about';
-
 const someGuy =
   'https://www.reddit.com/r/mattcolville/comments/75ixng/average_ability_scores_from_multiple_methods/do6kk7g/';
 
@@ -27,9 +25,8 @@ export const classicDescription = (
   <p className={styles.helpText}>
     Roll three six-sided dice. That's it. This is the method used in classic
     editions of D&D like <Link href={ogBasicRules}>Basic</Link> and{' '}
-    <Link href={adndRules}>Advanced</Link> Dungeons & Dragons, as well as
-    Old-School Renaissance (OSR) games like{' '}
-    <Link href={lotfpRules}>Lamentations of the Flame Princess.</Link>
+    <Link href={adndRules}>Advanced</Link> Dungeons & Dragons and other
+    old-school inspired games.
   </p>
 );
 
