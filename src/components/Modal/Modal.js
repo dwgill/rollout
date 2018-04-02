@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import cls from 'classnames';
 import styles from './styles.module.css';
 
-const stopPropagation = (/** @type React.SyntheticEvent */ event) =>
+function stopPropagation(/** @type React.SyntheticEvent */ event) {
   event.stopPropagation();
+}
 
 /**
  * @typedef ModalProps
- * @prop {React.Component} component
+ * @prop {React.ComponentType} interior
  * @prop {string} [className='']
  * @prop {string} [btnClassName='']
  * @prop {string} [btnLabel='Open Modal']
@@ -48,7 +49,7 @@ class Modal extends React.PureComponent {
 
   render() {
     const {
-      component: Component,
+      interior: Interior,
       className,
       btnClassName,
       btnLabel,
@@ -57,7 +58,10 @@ class Modal extends React.PureComponent {
     const { enabled } = this.state;
     return (
       <>
-        <button onClick={this.enableModal} className={styles.button}>
+        <button
+          className={!btnClassName ? styles.button : btnClassName}
+          onClick={this.enableModal}
+        >
           {btnLabel}
         </button>
         {enabled &&
@@ -71,10 +75,10 @@ class Modal extends React.PureComponent {
                 onClick={stopPropagation}
               >
                 <button
-                  className={btnClassName ? btnClassName : styles.closeBtn}
+                  className={styles.closeBtn}
                   onClick={this.disableModal}
                 />
-                <Component {...rest} onCompletion={this.disableModal} />
+                <Interior {...rest} onCompletion={this.disableModal} />
               </div>
             </div>,
             document.getElementById('modal-root'),

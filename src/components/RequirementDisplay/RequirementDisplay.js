@@ -2,6 +2,8 @@ import React from 'react';
 import SectionHeading from '../SectionHeading';
 import SectionSubHeading from '../SectionSubHeading';
 import RequirementsList from '../RequirementsList';
+import AddReqModal from './AddReqModal';
+import PresetsModal from './PresetsModal';
 import styles from './styles.module.css';
 
 const RequirementDisplay = () => (
@@ -12,8 +14,8 @@ const RequirementDisplay = () => (
     </SectionSubHeading>
     <RequirementsList />
     <div className={styles.buttonRow}>
-      <p>Preset Btn</p>
-      <p>Add Req</p>
+      <PresetsModal />
+      <AddReqModal />
     </div>
   </>
 );
