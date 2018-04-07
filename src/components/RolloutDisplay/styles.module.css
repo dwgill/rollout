@@ -34,7 +34,7 @@
 
   display: flex;
   flex-flow: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
@@ -44,7 +44,8 @@
   composes: is-dark from global;
 }
 
-.discardedDie {
-  font-style: normal;
-  text-decoration: line-through currentColor;
+.rollCount {
+  composes: resultText;
+  composes: is-size-2 from global;
+
 }

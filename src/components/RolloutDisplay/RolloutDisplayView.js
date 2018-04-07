@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './styles.module.css';
 import AttributeRow from './AttributeRow';
 import AttributeRows from './AttributeRows';
+import cls from 'classnames';
+
+const fmtNumRolls = (numRolls) => numRolls === 1 ? '1 roll' : `${numRolls} rolls`
 
 /**
  * @typedef RolloutDisplayViewProps
@@ -10,6 +13,7 @@ import AttributeRows from './AttributeRows';
  * @prop {function} onRollout
  * @prop {boolean} showAtributeNames
  * @prop {boolean} displayDice
+ * @prop {number} numRolls
  */
 
 /** @type React.SFC<RolloutDisplayViewProps> */
@@ -19,6 +23,7 @@ const RolloutDisplayView = ({
   onRollout: handleRollout,
   displayDice,
   showAtributeNames,
+  numRolls
 }) => (
   <>
     <div className={styles.resultsContainer}>
@@ -37,6 +42,9 @@ const RolloutDisplayView = ({
       )}
     </div>
     <div className={styles.rolloutButtonContainer}>
+      <p className={cls(styles.rollCount, {[styles.stale]: attributesAreStale})}>
+        {fmtNumRolls(numRolls)}
+      </p>
       <button
         className={styles.button}
         onClick={handleRollout}

@@ -3,7 +3,7 @@ import Modal from '../../Modal';
 import AddReqModalInterior from './AddReqModalInterior';
 import styles from './styles.module.css';
 
-const AddReqModal = ({}) => (
+const AddReqModal = () => (
   <Modal
     interior={AddReqModalInterior}
     // className=

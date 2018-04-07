@@ -10,7 +10,8 @@ const doRollout = () => (dispatch, getState) => {
 
   dispatch({
     type: DO_ROLLOUT,
-    payload: newRollout,
+    newRollout,
+    numRolls: 1,
   });
 };
 
