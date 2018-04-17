@@ -1,3 +1,8 @@
+import flow from 'lodash/fp/flow';
+import sum from 'lodash/fp/sum';
+import map from 'lodash/fp/map';
+import filter from 'lodash/fp/filter';
+import { calcMod } from './modifiers';
 /**
  *
  * @param {'AT_LEAST' | 'AT_MOST' | 'EXACTLY'} numScoresLimit Is it a ceiling? A floor? on the number of scores
@@ -73,6 +78,65 @@ const fmtReqs = {
 };
 
 export const fmtReq = req => fmtReqs[req.kind](req);
+
+const getScores = flow(map('constituents'), map(sum));
+const calcNetMod = flow(getScores, map(calcMod), sum);
+const calcNetScore = flow(getScores, sum);
+
+const reqFuncs = {
+  NET_MOD_REQ({ limit, value }) {
+    if (limit === 'AT_LEAST') {
+      return rollout => calcNetMod(rollout) >= value;
+    } else if (limit === 'AT_MOST') {
+      return rollout => calcNetMod(rollout) <= value;
+    } else {
+      return rollout => calcNetMod(rollout) === value;
+    }
+  },
+
+  NET_SCORE_REQ({ limit, value }) {
+    if (limit === 'AT_LEAST') {
+      return rollout => calcNetScore(rollout) >= value;
+    } else if (limit === 'AT_MOST') {
+      return rollout => calcNetScore(rollout) <= value;
+    } else {
+      return rollout => calcNetScore(rollout) === value;
+    }
+  },
+
+  SCORE_REQ({ numScoresLimit, numScores, scoreLimit, score }) {
+    let filterRelevantScores;
+    if (scoreLimit === 'AT_LEAST') {
+      filterRelevantScores = filter(attrVal => attrVal >= score);
+    } else if (scoreLimit === 'AT_MOST') {
+      filterRelevantScores = filter(attrVal => attrVal <= score);
+    } else {
+      filterRelevantScores = filter(attrVal => attrVal === score);
+    }
+
+    if (numScoresLimit === 'AT_LEAST') {
+      return flow(
+        getScores,
+        filterRelevantScores,
+        scores => scores.length >= numScores,
+      );
+    } else if (numScoresLimit === 'AT_MOST') {
+      return flow(
+        getScores,
+        filterRelevantScores,
+        scores => scores.length <= numScores,
+      );
+    } else {
+      return flow(
+        getScores,
+        filterRelevantScores,
+        scores => scores.length === numScores,
+      );
+    }
+  },
+};
+
+export const convertReqToPredicate = req => reqFuncs[req.kind](req);
 
 /**
  * @typedef {object} ScoreReq

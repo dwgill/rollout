@@ -3,7 +3,10 @@
 
   display: flex;
   flex-flow: column nowrap;
-  /* padding-left: 1rem; */
+}
+
+.list:not(:empty) {
+  margin-bottom: 1rem;
 }
 
 .requirement {

@@ -53,7 +53,7 @@ const RolloutDisplayView = ({
       <button
         className={styles.button}
         onClick={handleRollout}
-        disabled={!attributesAreStale}
+        // disabled={!attributesAreStale}
       >
         Rollout
       </button>

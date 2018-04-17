@@ -8,7 +8,12 @@ const RequirementsListView = ({
 }) => (
   <ul className={styles.list}>
     {requirements.map((req, index) => (
-      <Requirement id={index} key={index} text={req} onDelete={handleRemoveRequirement} />
+      <Requirement
+        id={index}
+        key={index}
+        text={req}
+        onDelete={handleRemoveRequirement}
+      />
     ))}
   </ul>
 );

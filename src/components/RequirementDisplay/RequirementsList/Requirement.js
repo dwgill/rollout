@@ -19,7 +19,7 @@ class Requirement extends React.PureComponent {
   handleDelete(event) {
     const { id, onDelete: trueHandleDelete } = this.props;
     if (trueHandleDelete) {
-        trueHandleDelete(id);
+      trueHandleDelete(id);
     }
   }
 
