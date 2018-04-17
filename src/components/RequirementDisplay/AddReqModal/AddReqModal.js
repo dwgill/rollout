@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 const AddReqModal = () => (
   <Modal
     interior={AddReqModalInterior}
-    // className=
+    className={styles.modal}
     btnClassName={styles.button}
     btnLabel="Add"
   />

@@ -1,0 +1,35 @@
+.selectContainer {
+  composes: select from global;
+}
+
+.divider {
+  composes: dropdown-divider from global;
+}
+
+.repTypeSelectionContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.form {
+  align-self: stretch;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.confirmBtn {
+  align-self: center;
+  composes: button from global;
+  composes: is-large from global;
+}
+
+@media screen and (max-width: 768px) {
+  .confirmBtn {
+    align-self: center;
+  }
+}

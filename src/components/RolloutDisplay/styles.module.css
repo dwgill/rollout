@@ -47,5 +47,4 @@
 .rollCount {
   composes: resultText;
   composes: is-size-2 from global;
-
 }

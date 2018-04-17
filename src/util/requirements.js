@@ -25,7 +25,7 @@ export const scoreReq = (numScoresLimit, numScores, scoreLimit, score) => ({
 export const netModReq = (limit, value) => ({
   kind: 'NET_MOD_REQ',
   limit,
-  score,
+  value,
 });
 
 /**
@@ -40,6 +40,23 @@ export const netScoreReq = (limit, value) => ({
   limit,
   value,
 });
+
+export const reqLimitValues = ['AT_LEAST', 'AT_MOST', 'EXACTLY'];
+
+const fmtLimit = limit => limit.toLowerCase().replace('_', ' ');
+
+const fmtReqs = {
+  NET_MOD_REQ: ({ limit, value }) =>
+    `all modifiers added together must be ${fmtLimit(limit)} ${value}`,
+  NET_SCORE_REQ: ({ limit, value }) =>
+    `all scores added together must be ${fmtLimit(limit)} ${value}`,
+  SCORE_REQ: ({ numScoresLimit, numScores, scoreLimit, score }) =>
+    `${fmtLimit(numScoresLimit)} ${numScores} ability scores must be ${fmtLimit(
+      scoreLimit,
+    )} ${score}`,
+};
+
+export const fmtReq = req => fmtReqs[req.kind](req);
 
 /**
  * @typedef {object} ScoreReq

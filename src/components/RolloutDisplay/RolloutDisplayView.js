@@ -4,7 +4,8 @@ import AttributeRow from './AttributeRow';
 import AttributeRows from './AttributeRows';
 import cls from 'classnames';
 
-const fmtNumRolls = (numRolls) => numRolls === 1 ? '1 roll' : `${numRolls} rolls`
+const fmtNumRolls = numRolls =>
+  numRolls === 1 ? '1 roll' : `${numRolls} rolls`;
 
 /**
  * @typedef RolloutDisplayViewProps
@@ -23,7 +24,7 @@ const RolloutDisplayView = ({
   onRollout: handleRollout,
   displayDice,
   showAtributeNames,
-  numRolls
+  numRolls,
 }) => (
   <>
     <div className={styles.resultsContainer}>
@@ -42,7 +43,11 @@ const RolloutDisplayView = ({
       )}
     </div>
     <div className={styles.rolloutButtonContainer}>
-      <p className={cls(styles.rollCount, {[styles.stale]: attributesAreStale})}>
+      <p
+        className={cls(styles.rollCount, {
+          [styles.stale]: attributesAreStale,
+        })}
+      >
         {fmtNumRolls(numRolls)}
       </p>
       <button

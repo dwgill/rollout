@@ -1,0 +1,54 @@
+.dropdown {
+  composes: dropdown from global;
+}
+
+.dropdownTrigger {
+  composes: dropdown-trigger from global;
+}
+
+.button {
+  composes: button from global;
+}
+
+.iconContainer {
+  composes: icon from global;
+  composes: is-small from global;
+}
+
+.icon {
+  composes: fas from global;
+  composes: fa-angle-down from global;
+}
+
+.active {
+  composes: is-active from global;
+}
+
+.menu {
+  composes: dropdown-menu from global;
+}
+
+.menuContent {
+  composes: dropdown-content from global;
+}
+
+.menuItem {
+  composes: dropdown-item from global;
+  cursor: pointer;
+}
+
+.menuItem:not(.menuItemActive):hover {
+  background-color: hsl(0, 0%, 96%); /* has-text-white-ter */
+}
+
+.menuItemActive {
+  composes: is-active from global;
+  composes: is-info from global;
+  composes: notification from global;
+  composes: is-radiusless from global;
+  composes: is-marginless from global;
+}
+
+.optionTitle {
+  composes: is-marginless from global;
+}

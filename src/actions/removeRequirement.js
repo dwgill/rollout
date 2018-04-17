@@ -5,7 +5,7 @@ import { REMOVE_REQUIREMENT } from './types';
  */
 const removeRequirement = reqId => ({
   type: REMOVE_REQUIREMENT,
-  reqId,
+  payload: reqId,
 });
 
 export default removeRequirement;

@@ -1,0 +1,3 @@
+.selectContainer {
+  composes: select from global;
+}

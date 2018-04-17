@@ -1,0 +1,53 @@
+.field {
+  composes: field from global;
+  composes: is-horizontal from global;
+}
+
+.innerField {
+  composes: field from global;
+}
+
+.control {
+  composes: control from global;
+}
+
+.fieldLabel {
+  composes: field-label from global;
+}
+
+.label {
+  composes: label from global;
+  composes: has-text-grey-dark from global;
+}
+
+.labelSizeSmall {
+  composes: is-small from global;
+}
+
+.labelSizeNormal {
+  composes: is-normal from global;
+}
+
+.labelSizeMedium {
+  composes: is-medium from global;
+}
+
+.labelSizeLarge {
+  composes: is-large from global;
+}
+
+.fieldBody {
+  composes: field-body from global;
+}
+
+.helpText {
+  composes: help from global;
+}
+
+.labelSink {
+  composes: is-flex-desktop from global;
+  /* display: flex; */
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+}

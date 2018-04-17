@@ -1,0 +1,15 @@
+.form {
+  composes: form from '../styles.module.css';
+}
+
+.input {
+  composes: input from global;
+}
+
+.numSelect {
+  min-width: 5rem;
+}
+
+.confirmBtn {
+  composes: confirmBtn from '../styles.module.css';
+}

@@ -1,8 +1,8 @@
 import { REPLACE_REQUIREMENTS } from './types';
 
-const replaceRequirements = reqs => ({
+const replaceRequirements = newReqs => ({
   type: REPLACE_REQUIREMENTS,
-  newReqs: reqs,
+  payload: newReqs,
 });
 
 export default replaceRequirements;

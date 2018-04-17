@@ -1,0 +1,16 @@
+.form {
+  composes: form from '../styles.module.css';
+  /* padding-bottom: 10rem; */
+}
+
+.input {
+  composes: input from global;
+}
+
+.selectContainer {
+  composes: select from global;
+}
+
+.confirmBtn {
+  composes: confirmBtn from '../styles.module.css';
+}

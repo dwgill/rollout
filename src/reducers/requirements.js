@@ -8,7 +8,7 @@ import {
 const initialState = [];
 
 const requirementsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_REQUIREMENT: {
       const newReq = action.payload;
       return state.concat(newReq);
@@ -20,6 +20,9 @@ const requirementsReducer = (state = initialState, action) => {
     case REPLACE_REQUIREMENTS: {
       const newReqs = action.payload;
       return newReqs || initialState;
+    }
+    default: {
+      return state;
     }
   }
 };
