@@ -45,15 +45,31 @@ export const reqLimitValues = ['AT_LEAST', 'AT_MOST', 'EXACTLY'];
 
 const fmtLimit = limit => limit.toLowerCase().replace('_', ' ');
 
+const nbs = String.fromCharCode(160); // non-breaking space
+
+const scoreLimitTexts = {
+  AT_MOST: `or${nbs}less`,
+  AT_LEAST: `or${nbs}more`,
+  EXACTLY: 'exactly',
+};
+
 const fmtReqs = {
-  NET_MOD_REQ: ({ limit, value }) =>
-    `all modifiers added together must be ${fmtLimit(limit)} ${value}`,
-  NET_SCORE_REQ: ({ limit, value }) =>
-    `all scores added together must be ${fmtLimit(limit)} ${value}`,
-  SCORE_REQ: ({ numScoresLimit, numScores, scoreLimit, score }) =>
-    `${fmtLimit(numScoresLimit)} ${numScores} ability scores must be ${fmtLimit(
-      scoreLimit,
-    )} ${score}`,
+  NET_MOD_REQ({ limit, value }) {
+    return `sum of all mods equal ${fmtLimit(limit)}${nbs}${value}`;
+  },
+
+  NET_SCORE_REQ({ limit, value }) {
+    return `sum of all scores equal ${fmtLimit(limit)}${nbs}${value}`;
+  },
+
+  SCORE_REQ({ numScoresLimit, numScores, scoreLimit, score }) {
+    const scoreLimitTxt = scoreLimitTexts[scoreLimit];
+    const numScoresTxt =
+      numScores === 1 ? `1${nbs}score` : `${numScores}${nbs}scores`;
+    return `${fmtLimit(
+      numScoresLimit,
+    )} ${numScoresTxt} ${score} ${scoreLimitTxt}`;
+  },
 };
 
 export const fmtReq = req => fmtReqs[req.kind](req);

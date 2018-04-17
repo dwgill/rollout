@@ -1,0 +1,25 @@
+.list {
+  align-self: stretch;
+
+  display: flex;
+  flex-flow: column nowrap;
+  /* padding-left: 1rem; */
+}
+
+.requirement {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.delBtn {
+  composes: button from global;
+  composes: is-text from global;
+  composes: is-small from global;
+}
+
+.delBtnIconWrapper {
+  composes: icon from global;
+  composes: is-medium from global;
+}

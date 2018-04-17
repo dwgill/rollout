@@ -4,3 +4,7 @@
   justify-content: space-between;
   align-items: stretch;
 }
+
+.subHeading {
+  margin-bottom: 0.5rem !important;
+}

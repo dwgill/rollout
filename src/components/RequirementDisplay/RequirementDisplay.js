@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 const RequirementDisplay = () => (
   <>
     <SectionHeading>Requirements</SectionHeading>
-    <SectionSubHeading>
+    <SectionSubHeading className={styles.subHeading}>
       Discard rollouts unless they conform with the following
     </SectionSubHeading>
     <RequirementsList />
