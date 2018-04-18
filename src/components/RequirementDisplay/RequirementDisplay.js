@@ -10,7 +10,7 @@ const RequirementDisplay = () => (
   <>
     <SectionHeading>Requirements</SectionHeading>
     <SectionSubHeading className={styles.subHeading}>
-      Discard rollouts unless they conform with the following
+      Discard rollouts until they meet the following criteria
     </SectionSubHeading>
     <RequirementsList />
     <div className={styles.buttonRow}>

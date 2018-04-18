@@ -14,10 +14,8 @@ const doRollout = () => (dispatch, getState) => {
 
   const doRoll = () => rollout({ rollType: attributeRollType });
 
-  console.group('doRollout()');
-  console.log('attributeRollType: ', attributeRollType);
-  console.log('requirements: ', requirements);
-  for (let numRolls = 1; numRolls <= 1000; ++numRolls) {
+  let numRolls
+  for (numRolls = 1; numRolls <= 1000; ++numRolls) {
     const newRollout = doRoll();
     if (checkRollout(newRollout)) {
       dispatch({
@@ -28,9 +26,10 @@ const doRollout = () => (dispatch, getState) => {
       break;
     }
   }
-  console.groupEnd('doRollout()');
 
-  // console.log('Took more than 1000 rolls to get rollout.');
+  if  (numRolls > 1000) {
+    console.log('Took more than 1000 rolls to get rollout.');
+  }
 };
 
 export default doRollout;
