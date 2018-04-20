@@ -8,3 +8,8 @@
 .subHeading {
   margin-bottom: 0.5rem !important;
 }
+
+.modalTitle {
+  composes: title from global;
+  composes: is-2 from global;
+}

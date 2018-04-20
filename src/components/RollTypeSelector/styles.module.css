@@ -11,3 +11,7 @@
 .helpText {
   composes: has-text-weight-normal from global;
 }
+
+.link {
+  composes: link from global;
+}

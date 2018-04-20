@@ -10,8 +10,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
-    "react-scripts": "2.0.0-next.47d2d941",
-    "reactbulma": "^1.1.1",
+    "react-scripts": "^2.0.0-next.b2fd8db8",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"

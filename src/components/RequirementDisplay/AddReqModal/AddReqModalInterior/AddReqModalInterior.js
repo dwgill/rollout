@@ -1,7 +1,6 @@
 import React from 'react';
 import find from 'lodash/fp/find';
 import map from 'lodash/fp/map';
-import { Title } from 'reactbulma';
 import Field from '../../../Field';
 import styles from './styles.module.css';
 import NewScoreReqForm from './NewScoreReqForm';
@@ -67,13 +66,12 @@ class AddReqModalInterior extends React.PureComponent {
     const NewReqComponent = newReqComponentsByType[selectedReqType];
     return (
       <>
-        <Title is="2">New Requirement</Title>
+        <h2 className={styles.title}>New Requirement</h2>
         <div className={styles.repTypeSelectionContainer}>
           <Field
             label="Requirement Kind"
             labelSize="normal"
             help={selectedReq.desc}
-            // labelSink
           >
             <div className={styles.selectContainer}>
               <select

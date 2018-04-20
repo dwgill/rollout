@@ -75,7 +75,7 @@ class NewModReqForm extends React.PureComponent {
             {mapLimitsToOpts(validLimits)}
           </Select>
           <Select value={value} onChange={this.handleSetValue}>
-            {mapNumsToOpts(validValues)}
+            {mapNumsToOpts(validValues).reverse()}
           </Select>
         </Field>
         <button className={styles.confirmBtn} type="submit">

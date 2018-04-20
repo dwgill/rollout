@@ -13,7 +13,7 @@
 }
 
 .singleRow {
-  composes: is-size-2 from global;
+  composes: is-size-1 from global;
 }
 
 .multipleRows {
@@ -47,4 +47,24 @@
 .rollCount {
   composes: resultText;
   composes: is-size-2 from global;
+}
+
+.failedRolloutDisplay {
+  align-self: center;
+  padding-top: 4rem;
+}
+
+.failedRolloutText {
+  composes: resultText;
+  composes: is-size-2-desktop from global;
+  composes: is-size-3-tablet from global;
+  composes: is-size-4-mobile from global;
+  composes: has-text-centered from global;
+}
+
+/* Bulma Mobile query */
+@media screen and (max-width: 768px) {
+  .failedRolloutDisplay {
+    padding-bottom: 4rem;
+  }
 }

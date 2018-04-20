@@ -4,9 +4,11 @@ import {
   REMOVE_REQUIREMENT,
   ADD_REQUIREMENT,
   REPLACE_REQUIREMENTS,
+  FAIL_ROLLOUT,
 } from '../actions/types';
 
 const initialState = {
+  failure: null,
   stale: true,
   numRolls: 0,
   attributes: [
@@ -55,8 +57,18 @@ const rolloutReducer = (state = initialState, action) => {
     case DO_ROLLOUT: {
       const { newRollout, numRolls } = action;
       return {
+        failure: null,
         stale: false,
         attributes: newRollout,
+        numRolls,
+      };
+    }
+    case FAIL_ROLLOUT: {
+      const { numRolls } = action;
+      return {
+        ...state,
+        stale: false,
+        failure: true,
         numRolls,
       };
     }

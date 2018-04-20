@@ -11,7 +11,8 @@ const fmtReqs = flow(
 );
 
 const mapStateToProps = ({ requirements }) => ({
-  requirements: fmtReqs(requirements),
+  requirements:
+    requirements.length === 0 ? requirements : fmtReqs(requirements),
 });
 
 const mapDispatchToProps = {

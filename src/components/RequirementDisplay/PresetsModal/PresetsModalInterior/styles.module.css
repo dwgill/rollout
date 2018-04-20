@@ -1,0 +1,7 @@
+.title {
+    composes: modalTitle from '../../styles.module.css';
+}
+
+.item {
+
+}

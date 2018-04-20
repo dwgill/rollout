@@ -84,6 +84,10 @@ const calcNetMod = flow(getScores, map(calcMod), sum);
 const calcNetScore = flow(getScores, sum);
 
 const reqFuncs = {
+  /**
+   * @param {NetModReq} param0
+   * @returns a func which evaluations whether a rollout meets the criteria
+   */
   NET_MOD_REQ({ limit, value }) {
     if (limit === 'AT_LEAST') {
       return rollout => calcNetMod(rollout) >= value;
@@ -94,6 +98,10 @@ const reqFuncs = {
     }
   },
 
+  /**
+   * @param {NetScoreReq} netScoreReq
+   * @returns a func which evaluations whether a rollout meets the criteria
+   */
   NET_SCORE_REQ({ limit, value }) {
     if (limit === 'AT_LEAST') {
       return rollout => calcNetScore(rollout) >= value;
@@ -104,6 +112,10 @@ const reqFuncs = {
     }
   },
 
+  /**
+   * @param {ScoreReq} scoreRequirement
+   * @returns a function which evaluates whether a rollout object meets the criteria specified
+   */
   SCORE_REQ({ numScoresLimit, numScores, scoreLimit, score }) {
     let filterRelevantScores;
     if (scoreLimit === 'AT_LEAST') {

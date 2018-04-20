@@ -2,6 +2,7 @@ import React from 'react';
 import { formatAttr, formatDice } from './format';
 import cls from 'classnames';
 import styles from './styles.module.css';
+import random from 'lodash/fp/random';
 
 const attributeOrder = [
   'Strength',
@@ -12,14 +13,10 @@ const attributeOrder = [
   'Charisma',
 ];
 
-const generateStyle = () =>
-  Math.random() >= 0.5
-    ? {
-        paddingRight: `${Math.random()}rem`,
-      }
-    : {
-        paddingLeft: `${Math.random()}rem`,
-      };
+const generateStyle = () => ({
+  [`padding${['Left', 'Right'][random(0, 1)]}`]: `${random(0.0, 1.1)}rem`,
+  transform: `rotate(${random(-2, 2)}deg) scale(${random(0.9, 1.05)})`,
+});
 
 const AttributeRows = ({
   attributesAreStale,

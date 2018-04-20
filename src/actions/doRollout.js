@@ -3,7 +3,7 @@ import map from 'lodash/fp/map';
 import overEvery from 'lodash/fp/overEvery';
 import rollout from '../util/rollout';
 import { convertReqToPredicate } from '../util/requirements';
-import { DO_ROLLOUT } from './types';
+import { DO_ROLLOUT, FAIL_ROLLOUT } from './types';
 
 const doRollout = () => (dispatch, getState) => {
   const { attributeRollType, requirements } = getState();
@@ -14,8 +14,8 @@ const doRollout = () => (dispatch, getState) => {
 
   const doRoll = () => rollout({ rollType: attributeRollType });
 
-  let numRolls
-  for (numRolls = 1; numRolls <= 1000; ++numRolls) {
+  let numRolls;
+  for (numRolls = 1; numRolls <= 500; ++numRolls) {
     const newRollout = doRoll();
     if (checkRollout(newRollout)) {
       dispatch({
@@ -27,8 +27,12 @@ const doRollout = () => (dispatch, getState) => {
     }
   }
 
-  if  (numRolls > 1000) {
-    console.log('Took more than 1000 rolls to get rollout.');
+  if (numRolls > 500) {
+    dispatch({
+      type: FAIL_ROLLOUT,
+      reqs: requirements,
+      numRolls: numRolls - 1,
+    });
   }
 };
 

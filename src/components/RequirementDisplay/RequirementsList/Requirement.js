@@ -17,6 +17,7 @@ class Requirement extends React.PureComponent {
   }
 
   handleDelete(event) {
+    event.preventDefault();
     const { id, onDelete: trueHandleDelete } = this.props;
     if (trueHandleDelete) {
       trueHandleDelete(id);

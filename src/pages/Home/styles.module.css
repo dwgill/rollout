@@ -1,0 +1,25 @@
+.header {
+  composes: hero from global;
+}
+
+.headerBody {
+  composes: hero-body from global;
+}
+
+.title {
+  composes: title from global;
+  composes: is-1 from global;
+}
+
+.subtitle {
+  composes: subtitle from global;
+  composes: is-5 from global;
+}
+
+.pageBody {
+  composes: section from global;
+}
+
+.container {
+  composes: container from global;
+}

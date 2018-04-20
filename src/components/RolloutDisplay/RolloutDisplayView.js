@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './styles.module.css';
+import cls from 'classnames';
+import FailedRolloutDisplay from './FailedRolloutDisplay';
 import AttributeRow from './AttributeRow';
 import AttributeRows from './AttributeRows';
-import cls from 'classnames';
+import styles from './styles.module.css';
 
 const fmtNumRolls = numRolls =>
   numRolls === 1 ? '1 roll' : `${numRolls} rolls`;
@@ -15,20 +16,28 @@ const fmtNumRolls = numRolls =>
  * @prop {boolean} showAtributeNames
  * @prop {boolean} displayDice
  * @prop {number} numRolls
+ * @prop {number} numRequirements
+ * @prop {boolean} rolloutFailed
  */
 
 /** @type React.SFC<RolloutDisplayViewProps> */
 const RolloutDisplayView = ({
   attributesAreStale,
+  requireStaleAttsToRoll,
   attributes,
   onRollout: handleRollout,
   displayDice,
   showAtributeNames,
   numRolls,
+  rolloutFailed,
+  numRequirements,
 }) => (
   <>
     <div className={styles.resultsContainer}>
-      {showAtributeNames || displayDice ? (
+      {rolloutFailed ? (
+        <FailedRolloutDisplay numRequirements={numRequirements} />
+      ) : // null
+      showAtributeNames || displayDice ? (
         <AttributeRows
           attributesAreStale={attributesAreStale}
           attributes={attributes}
@@ -53,7 +62,7 @@ const RolloutDisplayView = ({
       <button
         className={styles.button}
         onClick={handleRollout}
-        // disabled={!attributesAreStale}
+        disabled={requireStaleAttsToRoll && !attributesAreStale}
       >
         Rollout
       </button>
