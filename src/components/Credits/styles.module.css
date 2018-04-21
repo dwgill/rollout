@@ -1,0 +1,13 @@
+.link {
+  composes: link from global;
+  /* composes: has-text-grey-dark from global;
+  composes: has-text-weight-semibold from global; */
+}
+
+.list {
+
+}
+
+.credit {
+  composes: has-text-grey from global;
+}

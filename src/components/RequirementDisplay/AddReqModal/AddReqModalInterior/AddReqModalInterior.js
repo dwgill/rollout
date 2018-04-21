@@ -66,7 +66,9 @@ class AddReqModalInterior extends React.PureComponent {
     const NewReqComponent = newReqComponentsByType[selectedReqType];
     return (
       <>
+        {/* eslint-disable jsx-a11y/heading-has-content */}
         <h2 className={styles.title}>New Requirement</h2>
+        {/* eslint-enable */}
         <div className={styles.repTypeSelectionContainer}>
           <Field
             label="Requirement Kind"

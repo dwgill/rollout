@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 const PresetsModal = () => (
   <Modal
     interior={PresetsModalInterior}
-    // className=
+    className={styles.modal}
     btnClassName={styles.button}
     btnLabel="Presets"
   />

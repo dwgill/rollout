@@ -2,3 +2,7 @@
   composes: button from global;
   /* composes: is-medium from global; */
 }
+
+.modal {
+  max-width: 95%;
+}

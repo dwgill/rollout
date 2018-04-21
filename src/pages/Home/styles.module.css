@@ -23,3 +23,15 @@
 .container {
   composes: container from global;
 }
+
+.footer {
+  composes: footer from global;
+}
+
+.footerContent {
+  composes: container;
+  composes: is-flex from global;
+  /* flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center; */
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import RolloutGenerator from '../../components/RolloutGenerator';
+import Credits from '../../components/Credits';
 import styles from './styles.module.css';
 
 /** @type React.SFC<{}> */
@@ -20,6 +21,11 @@ const Home = () => (
         <RolloutGenerator />
       </div>
     </section>
+    <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+        <Credits />
+      </div>
+    </footer>
   </>
 );
 
