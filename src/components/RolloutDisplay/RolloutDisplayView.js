@@ -36,8 +36,7 @@ const RolloutDisplayView = ({
     <div className={styles.resultsContainer}>
       {rolloutFailed ? (
         <FailedRolloutDisplay numRequirements={numRequirements} />
-      ) : // null
-      showAtributeNames || displayDice ? (
+      ) : attributes.length === 0 ? null : showAtributeNames || displayDice ? (
         <AttributeRows
           attributesAreStale={attributesAreStale}
           attributes={attributes}

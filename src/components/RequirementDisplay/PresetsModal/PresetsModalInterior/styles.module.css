@@ -1,7 +1,29 @@
 .title {
-    composes: modalTitle from '../../styles.module.css';
+  composes: modalTitle from '../../styles.module.css';
+}
+
+.itemTitle {
+  composes: title from global;
+  composes: is-4 from global;
+  composes: is-marginless from global;
+}
+
+.itemBody {
+  white-space: normal;
+  text-align: start;
 }
 
 .item {
+  composes: button from global;
+  flex-flow: column nowrap;
+  align-items: flex-start !important;
+  height: unset !important;
+}
 
+.item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.link {
+  composes: link from global;
 }

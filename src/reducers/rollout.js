@@ -11,32 +11,7 @@ const initialState = {
   failure: null,
   stale: true,
   numRolls: 0,
-  attributes: [
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-    {
-      constituents: [3, 3, 4],
-      discarded: [],
-    },
-  ],
+  attributes: [],
 };
 
 const rolloutReducer = (state = initialState, action) => {

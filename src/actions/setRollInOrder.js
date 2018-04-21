@@ -8,7 +8,7 @@ import { SET_ROLL_IN_ORDER } from './types';
 
 /**
  *
- * @param {string} shouldRollInOrder
+ * @param {boolean} shouldRollInOrder
  * @returns {SET_ROLL_IN_ORDER} the action
  */
 const setRollInOrder = shouldRollInOrder => ({

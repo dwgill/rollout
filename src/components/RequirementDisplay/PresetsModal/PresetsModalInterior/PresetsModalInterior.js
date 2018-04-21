@@ -6,6 +6,8 @@ import {
   netScoreReq,
 } from '../../../../util/requirements';
 import replaceRequirements from '../../../../actions/replaceRequirements';
+import setAttributeRollType from '../../../../actions/setAttributeRollType';
+import setRollInOrder from '../../../../actions/setRollInOrder';
 import PresetsModalInteriorView from './PresetsModalInteriorView';
 
 const addSideEffect = doSideEffect => produceValue => (...args) => {
@@ -13,22 +15,41 @@ const addSideEffect = doSideEffect => produceValue => (...args) => {
   return produceValue(...args);
 };
 
-const handleSetColvilleClassic = () =>
-  replaceRequirements([scoreReq('AT_LEAST', 2, 'AT_LEAST', 15)]);
+const handleSetColvilleClassic = () => dispatch => {
+  dispatch(setRollInOrder(true));
+  dispatch(setAttributeRollType('STANDARD'));
+  dispatch(replaceRequirements([scoreReq('AT_LEAST', 2, 'AT_LEAST', 15)]));
+};
 
-const handleSetColville = () => replaceRequirements([netModReq('AT_LEAST', 2)]);
+const handleSetColville = () => dispatch => {
+  dispatch(setRollInOrder(true));
+  dispatch(setAttributeRollType('STANDARD'));
+  dispatch(replaceRequirements([netModReq('AT_LEAST', 2)]));
+};
 
-const handleSetMercer = () => replaceRequirements([netScoreReq('AT_LEAST', 70)]);
+const handleSetMercer = () => dispatch => {
+  dispatch(setAttributeRollType('STANDARD'));
+  dispatch(replaceRequirements([netScoreReq('AT_LEAST', 70)]));
+};
+
+const handleSetMercerPlus = () => dispatch => {
+  dispatch(setAttributeRollType('STANDARD'));
+  dispatch(replaceRequirements([netScoreReq('AT_LEAST', 75)]));
+};
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch, { onCompletion: handleCompletion }) => {
   const wrapComplete = addSideEffect(handleCompletion);
-  return bindActionCreators({
-    onSetColville: wrapComplete(handleSetColville),
-    onSetMercer: wrapComplete(handleSetMercer),
-    onSetColvilleClassic: wrapComplete(handleSetColvilleClassic),
-  }, dispatch);
+  return bindActionCreators(
+    {
+      onSetColville: wrapComplete(handleSetColville),
+      onSetMercer: wrapComplete(handleSetMercer),
+      onSetMercerPlus: wrapComplete(handleSetMercerPlus),
+      onSetColvilleClassic: wrapComplete(handleSetColvilleClassic),
+    },
+    dispatch,
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

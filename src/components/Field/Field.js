@@ -35,7 +35,7 @@ const HorizontalField = ({ children, label, labelSize, labelSink, help }) => (
   </div>
 );
 
-const Label = ({ children, size, sink }) => (
+const Label = ({ children, size }) => (
   <label
     className={cls(styles.label, {
       [labelSizes[size]]: labelSizes[size],

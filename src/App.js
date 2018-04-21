@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
-import 'bulma/css/bulma.css';
+import thunk from 'redux-thunk';
 import Home from './pages/Home';
 import reducers from './reducers';
-import thunk from 'redux-thunk';
+import 'bulma/css/bulma.css';
 
 const middleware = [thunk];
 
