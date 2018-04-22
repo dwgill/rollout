@@ -35,3 +35,13 @@
   justify-content: flex-start;
   align-items: center; */
 }
+
+.iconContainer {
+  composes: icon from global;
+  composes: link from global;
+  composes: is-medium from global;
+  composes: has-text-grey-light from global;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

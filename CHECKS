@@ -1,0 +1,5 @@
+# Dokku Checks file
+# http://dokku.viewdocs.io/dokku/deployment/zero-downtime-deploys/#customizing-checks
+# Path -> Content
+# Index -> Page title ('Rollout')
+/ Rollout

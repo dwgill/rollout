@@ -43,20 +43,20 @@ const PresetsModalInteriorView = ({
       <Button title="The Colville" onClick={handleSetColville}>
         A method described by Matt Colville in his{' '}
         <A link={colvilleLink}>Running the Game</A> series. Roll the standard
-        4d6, drop 1, six times in order, but start over again if the all the
-        modifiers add up to less than +2.
+        4d6 and drop the lowest die, six times in order, but start over again if
+        the all the modifiers add up to less than +2.
       </Button>
       <Button title="The Colville Classic" onClick={handleSetColvilleClassic}>
         The original approach{' '}
         <A link={colvilleClassicLink}>advocated by Matt Colville</A> when
-        introducing players to Dungeons & Dragons. Roll 4d6, drop 1, in order,
-        but discard the rollout if there aren't at least two scores 15 or
-        higher.
+        introducing players to Dungeons & Dragons. As standard, roll 4d6 and
+        drop the lowest die for each attribute, but discard the rollout if there
+        aren't at least two scores 15 or higher.
       </Button>
       <Button title="The Mercer" onClick={handleSetMercer}>
         An approach <A link={mercerLink}>used by Matt Mercer</A> of Critical
-        Role fame. Roll your stats using the standard 4d6 drop 1, but roll again
-        if the attributes don't add up to 70 or more.
+        Role fame. Roll your stats using the standard method, but roll again if
+        the attributes don't add up to 70 or more.
       </Button>
       <Button title="The Mercer+" onClick={handleSetMercerPlus}>
         <A link={mercerLink}>

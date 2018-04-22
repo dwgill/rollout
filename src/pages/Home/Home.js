@@ -3,6 +3,12 @@ import RolloutGenerator from '../../components/RolloutGenerator';
 import Credits from '../../components/Credits';
 import styles from './styles.module.css';
 
+const Icon = () => (
+  <a className={styles.iconContainer}>
+    <i className="fab fa-2x fa-github" />
+  </a>
+);
+
 /** @type React.SFC<{}> */
 const Home = () => (
   <>
@@ -13,6 +19,7 @@ const Home = () => (
           <h5 className={styles.subtitle}>
             A Dungeons & Dragons Attribute Generator
           </h5>
+          <Icon />
         </div>
       </div>
     </section>
