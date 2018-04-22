@@ -2,25 +2,31 @@
   composes: modalTitle from '../../styles.module.css';
 }
 
-.itemTitle {
+.buttons {
+  width: 100%;
+}
+
+.buttonTitle {
   composes: title from global;
   composes: is-4 from global;
   composes: is-marginless from global;
+  composes: has-text-left from global;
 }
 
-.itemBody {
+.buttonBody {
+  composes: has-text-left from global;
   white-space: normal;
   text-align: start;
 }
 
-.item {
+.button {
   composes: button from global;
-  flex-flow: column nowrap;
-  align-items: flex-start !important;
+  composes: is-block from global;
   height: unset !important;
+  width: 100%;
 }
 
-.item:not(:last-child) {
+.button:not(:last-child) {
   margin-bottom: 1rem;
 }
 

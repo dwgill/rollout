@@ -30,10 +30,6 @@
 }
 
 .modalDefault {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
   width: 30rem;
 }
 
@@ -49,4 +45,5 @@
 :global(#modal-root):not(:empty) ~ :global(#root) {
   filter: blur(3px);
   overflow: hidden; /* Stop scrolling the rest of the app if there's a modal */
+  position: fixed;
 }
