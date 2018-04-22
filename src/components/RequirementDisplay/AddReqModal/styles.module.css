@@ -8,6 +8,5 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: stretch;
-  max-width: 95%;
   /* width: 45rem; */
 }

@@ -1,22 +1,32 @@
 .modalShade {
   position: fixed;
   top: 0;
-  height: 100%;
-  /* bottom: 0; */
+  /* height: 100%; */
+  bottom: 0;
   left: 0;
-  width: 100%;
-  /* right: 0; */
+  /* width: 100%; */
+  right: 0;
   z-index: 10;
 
   background-color: rgba(12, 12, 12, 0.5);
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
-  align-items: center;
+  /*
+   * In order for the modal to play with with overflowing the shade, we DO NOT set either
+   * justify-content: center;
+   * or
+   * align-items: center;
+   * Instead, we set margin: auto on the modal.
+   */
+
+  overflow: auto; /* Scroll the shade if the modal is larger than the shade */
+  padding-top: 2rem;
 }
 
 .modalCommon {
   composes: notification from global;
+  margin: auto;
+  max-width: 95%;
 }
 
 .modalDefault {
@@ -24,7 +34,6 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: stretch;
-  max-width: 100%;
   width: 30rem;
 }
 
@@ -39,4 +48,5 @@
 
 :global(#modal-root):not(:empty) ~ :global(#root) {
   filter: blur(3px);
+  overflow: hidden; /* Stop scrolling the rest of the app if there's a modal */
 }
