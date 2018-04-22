@@ -45,5 +45,5 @@
 :global(#modal-root):not(:empty) ~ :global(#root) {
   filter: blur(3px);
   overflow: hidden; /* Stop scrolling the rest of the app if there's a modal */
-  position: fixed;
+  /* position: fixed; */
 }
