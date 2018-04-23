@@ -43,5 +43,13 @@
   composes: has-text-grey-light from global;
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 2rem;
+}
+
+/* Bulma Mobile query */
+@media screen and (max-width: 768px) {
+  .iconContainer {
+    top: 1rem;
+    right: 1rem;
+  }
 }
