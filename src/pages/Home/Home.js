@@ -6,8 +6,7 @@ import styles from './styles.module.css';
 const GithubIcon = () => (
   <a
     className={styles.iconContainer}
-    href="https://github.com/dwgill/rollout" 
-    target="_blank"
+    href="https://github.com/dwgill/rollout"
     rel="external"
   >
     <i className="fab fa-2x fa-github" />

@@ -28,11 +28,13 @@ const handleSetColville = () => dispatch => {
 };
 
 const handleSetMercer = () => dispatch => {
+  dispatch(setRollInOrder(false));
   dispatch(setAttributeRollType('STANDARD'));
   dispatch(replaceRequirements([netScoreReq('AT_LEAST', 70)]));
 };
 
 const handleSetMercerPlus = () => dispatch => {
+  dispatch(setRollInOrder(false));
   dispatch(setAttributeRollType('STANDARD'));
   dispatch(replaceRequirements([netScoreReq('AT_LEAST', 75)]));
 };

@@ -2,10 +2,13 @@ import React from 'react';
 import styles from './styles.module.css';
 
 const mercerLink =
+  'https://twitter.com/matthewmercer/status/707813904160854024';
+const mercerPlusLink =
   'https://www.sageadvice.eu/2018/02/28/how-did-you-choose-the-number-threshold-for-starting-stats-rolled-for-your-players/';
 const colvilleClassicLink =
   'https://www.youtube.com/watch?v=0K9mKpAMREU&feature=youtu.be&t=8m53s';
-const colvilleLink = '#';
+const colvilleLink =
+  'https://twitter.com/mattcolville/status/917533484675096582';
 
 const stopPropagation = event => {
   event.stopPropagation();
@@ -17,7 +20,7 @@ const A = ({ link, children }) => (
     className={styles.link}
     href={link}
     onClick={stopPropagation}
-    rel="external"
+    rel="external noopener"
     target="_blank"
   >
     {children}
@@ -55,15 +58,16 @@ const PresetsModalInteriorView = ({
       </Button>
       <Button title="The Mercer" onClick={handleSetMercer}>
         An approach <A link={mercerLink}>used by Matt Mercer</A> of Critical
-        Role fame. Roll your stats using the standard method, but roll again if
-        the attributes don't add up to 70 or more.
+        Role fame. Roll your stats using the standard method and arrange the
+        scores in any order you like, but roll again if the attributes don't add
+        up to 70 or more.
       </Button>
       <Button title="The Mercer+" onClick={handleSetMercerPlus}>
-        <A link={mercerLink}>
+        <A link={mercerPlusLink}>
           The same approach by Matt Mercer, but with a higher threshold.
         </A>{' '}
-        Roll stats as usual, but start again if the scores add up to less than
-        75.
+        Roll stats as usual and arrange in any order you like, but start again
+        if the scores add up to less than 75.
       </Button>
     </ul>
   </div>
