@@ -5,6 +5,10 @@ import {
   ADD_REQUIREMENT,
   REPLACE_REQUIREMENTS,
   FAIL_ROLLOUT,
+  PRESET_COLVILLE,
+  PRESET_COLVILLE_CLASSIC,
+  PRESET_MERCER,
+  PRESET_MERCER_PLUS,
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +20,13 @@ const initialState = {
 
 const rolloutReducer = (state = initialState, action) => {
   switch (action.type) {
+    // Presets
+    case PRESET_COLVILLE:
+    case PRESET_COLVILLE_CLASSIC:
+    case PRESET_MERCER:
+    case PRESET_MERCER_PLUS: {
+      return initialState;
+    }
     // Staling Actions
     case REMOVE_REQUIREMENT:
     case ADD_REQUIREMENT:
