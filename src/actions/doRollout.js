@@ -20,8 +20,10 @@ const doRollout = () => (dispatch, getState) => {
     if (checkRollout(newRollout)) {
       dispatch({
         type: DO_ROLLOUT,
-        newRollout,
-        numRolls,
+        payload: {
+          newRollout,
+          numRolls,
+        }
       });
       break;
     }
@@ -30,8 +32,7 @@ const doRollout = () => (dispatch, getState) => {
   if (numRolls > 500) {
     dispatch({
       type: FAIL_ROLLOUT,
-      reqs: requirements,
-      numRolls: numRolls - 1,
+      payload: numRolls - 1,
     });
   }
 };

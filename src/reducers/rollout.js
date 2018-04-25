@@ -41,7 +41,7 @@ const rolloutReducer = (state = initialState, action) => {
     }
     // Non-Staling Actions
     case DO_ROLLOUT: {
-      const { newRollout, numRolls } = action;
+      const { payload: { newRollout, numRolls } } = action;
       return {
         failure: null,
         stale: false,
@@ -50,7 +50,7 @@ const rolloutReducer = (state = initialState, action) => {
       };
     }
     case FAIL_ROLLOUT: {
-      const { numRolls } = action;
+      const { payload: numRolls } = action;
       return {
         ...state,
         stale: false,
