@@ -14,6 +14,21 @@ import {
   scoreReqKind,
   netScoreReqKind,
 } from './util/requirements';
+import {
+  SET_ATTRIBUTE_ROLL_TYPE,
+  SET_ROLL_IN_ORDER,
+  SET_FORCE_STALE,
+  SET_DISPLAY_DICE,
+  DO_ROLLOUT,
+  FAIL_ROLLOUT,
+  ADD_REQUIREMENT,
+  REPLACE_REQUIREMENTS,
+  REMOVE_REQUIREMENT,
+  PRESET_COLVILLE,
+  PRESET_COLVILLE_CLASSIC,
+  PRESET_MERCER,
+  PRESET_MERCER_PLUS,
+} from './actions/types';
 
 const categories = {
   display: 'Display',
@@ -27,7 +42,7 @@ function fmtLimit(limitStr) {
   return limitStr === 'AT_LEAST' ? '<=' : limitStr === 'AT_MOST' ? '>=' : '==';
 }
 
-function fmtNum(num) {
+function fmtMod(num) {
   if (num >= 0) {
     return `+${num}`;
   } else {
@@ -37,21 +52,20 @@ function fmtNum(num) {
 
 const reqfmters = {
   [netModReqKind]: ({ limit, value }) =>
-    `netMod${fmtLimit(limit)}${fmtNum(value)}`,
+    `netMod${fmtLimit(limit)}${fmtMod(value)}`,
   [netScoreReqKind]: ({ limit, value }) =>
-    `netScore${fmtLimit(limit)}${fmtNum(value)}`,
+    `netScore${fmtLimit(limit)}${value}`,
   [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     const limitNum = fmtLimit(numScoresLimit);
-    const num = fmtNum(numScores);
     const limitScore = fmtLimit(scoreLimit);
-    const fmtedScore = fmtNum(score);
-    return `scoreReq${limitNum}${num}${limitScore}${fmtedScore}`;
+    const fmtedScore = fmtMod(score);
+    return `scoreReq${limitNum}${numScores}${limitScore}${fmtedScore}`;
   },
 };
 
 const fmtReq = req => reqfmters[req.kind](req);
 
-const fmtReqs = flow(map(fmtReq), sortBy(x => x), join(','));
+const fmtReqs = flow(map(fmtReq), sortBy(x => x), join(','), reqsStr => reqsStr || 'none');
 
 const fmtRollout = flow(
   property('newRollout'),
@@ -61,7 +75,7 @@ const fmtRollout = flow(
 );
 
 const eventsMap = {
-  SET_ATTRIBUTE_ROLL_TYPE: trackEvent(
+  [SET_ATTRIBUTE_ROLL_TYPE]: trackEvent(
     ({ type, payload }) => ({
       category: categories.rollType,
       action: type,
@@ -69,51 +83,51 @@ const eventsMap = {
       label: payload,
     }),
   ),
-  SET_ROLL_IN_ORDER: trackEvent(({ type, payload }) => ({
+  [SET_ROLL_IN_ORDER]: trackEvent(({ type, payload }) => ({
     category: categories.display,
     action: type,
     // value: null,
     label: payload,
   })),
-  SET_FORCE_STALE: trackEvent(({ type, payload }) => ({
+  [SET_FORCE_STALE]: trackEvent(({ type, payload }) => ({
     category: categories.display,
     action: type,
     // value: null,
     label: payload,
   })),
-  SET_DISPLAY_DICE: trackEvent(({ type, payload }) => ({
+  [SET_DISPLAY_DICE]: trackEvent(({ type, payload }) => ({
     category: categories.display,
     action: type,
     // value: null,
     label: payload,
   })),
-  DO_ROLLOUT: combineEvents(
+  [DO_ROLLOUT]: combineEvents(
     trackEvent(({ type, payload }) => ({
       category: categories.rollout,
       action: `${type}_RESULTS`,
       // value: null,
       label: fmtRollout(payload),
     })),
-    trackEvent(({ type, payload }, prevState) => ({
+    trackEvent(({ type }, prevState) => ({
       category: categories.rollout,
       action: `${type}_REQS`,
       // value: null,
       label: fmtReqs(prevState.requirements),
     })),
   ),
-  FAIL_ROLLOUT: trackEvent(({ type, payload }, prevState) => ({
+  [FAIL_ROLLOUT]: trackEvent(({ type }, prevState) => ({
     category: categories.rollout,
     action: type,
     // value: null,
     label: fmtReqs(prevState.requirements),
   })),
-  ADD_REQUIREMENT: trackEvent(({ type, payload }) => ({
+  [ADD_REQUIREMENT]: trackEvent(({ type, payload }) => ({
     category: categories.requirements,
     action: type,
     // value: null,
     label: fmtReq(payload),
   })),
-  REPLACE_REQUIREMENTS: trackEvent(
+  [REPLACE_REQUIREMENTS]: trackEvent(
     ({ type, payload }) => ({
       category: categories.requirements,
       action: type,
@@ -121,33 +135,33 @@ const eventsMap = {
       label: fmtReqs(payload),
     }),
   ),
-  REMOVE_REQUIREMENT: trackEvent(({ type, payload }, prevState) => ({
+  [REMOVE_REQUIREMENT]: trackEvent(({ type, payload }, prevState) => ({
     category: categories.requirements,
     action: type,
     // value: null,
     label: fmtReq(prevState.requirements[payload]),
   })),
-  PRESET_COLVILLE: trackEvent(({ type, payload }) => ({
+  [PRESET_COLVILLE]: trackEvent(({ type }) => ({
     category: categories.presets,
     action: type,
     // value: null,
     // label: null,
   })),
-  PRESET_COLVILLE_CLASSIC: trackEvent(
-    ({ type, payload }) => ({
+  [PRESET_COLVILLE_CLASSIC]: trackEvent(
+    ({ type }) => ({
       category: categories.presets,
       action: type,
       // value: null,
       // label: null,
     }),
   ),
-  PRESET_MERCER: trackEvent(({ type, payload }) => ({
+  [PRESET_MERCER]: trackEvent(({ type }) => ({
     category: categories.presets,
     action: type,
     // value: null,
     // label: null,
   })),
-  PRESET_MERCER_PLUS: trackEvent(({ type, payload }) => ({
+  [PRESET_MERCER_PLUS]: trackEvent(({ type }) => ({
     category: categories.presets,
     action: type,
     // value: null,
