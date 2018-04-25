@@ -1170,6 +1170,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@redux-beacon/combine-events@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@redux-beacon/combine-events/-/combine-events-1.0.0.tgz#30e7bac86dac3221fe6b9e40919b0a8589cb322a"
+  dependencies:
+    array-flatten "2.1.1"
+
 "@redux-beacon/google-analytics-gtag@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@redux-beacon/google-analytics-gtag/-/google-analytics-gtag-1.0.2.tgz#adf189c7cdf49c297dbd0e914b62f6ad79a5e83f"
