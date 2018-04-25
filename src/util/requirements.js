@@ -3,6 +3,11 @@ import sum from 'lodash/fp/sum';
 import map from 'lodash/fp/map';
 import filter from 'lodash/fp/filter';
 import { calcMod } from './modifiers';
+
+export const scoreReqKind = 'SCORE_REQ';
+export const netModReqKind = 'NET_MOD_REQ';
+export const netScoreReqKind = 'NET_SCORE_REQ';
+
 /**
  *
  * @param {'AT_LEAST' | 'AT_MOST' | 'EXACTLY'} numScoresLimit Is it a ceiling? A floor? on the number of scores
@@ -13,7 +18,7 @@ import { calcMod } from './modifiers';
  * @example scoreReq('AT_LEAST', 2, 'AT_LEAST', 15) => Colville classic requirement
  */
 export const scoreReq = (numScoresLimit, numScores, scoreLimit, score) => ({
-  kind: 'SCORE_REQ',
+  kind: scoreReqKind,
   numScoresLimit,
   numScores,
   scoreLimit,
@@ -28,7 +33,7 @@ export const scoreReq = (numScoresLimit, numScores, scoreLimit, score) => ({
  * @example netModReq("AT_LEAST", 2) => Colville neo requirement
  */
 export const netModReq = (limit, value) => ({
-  kind: 'NET_MOD_REQ',
+  kind: netModReqKind,
   limit,
   value,
 });
@@ -41,7 +46,7 @@ export const netModReq = (limit, value) => ({
  * @example netScoreReq("AT_LEAST", 70) => Matt Mercer requirement
  */
 export const netScoreReq = (limit, value) => ({
-  kind: 'NET_SCORE_REQ',
+  kind: netScoreReqKind,
   limit,
   value,
 });
@@ -59,15 +64,15 @@ const scoreLimitTexts = {
 };
 
 const fmtReqs = {
-  NET_MOD_REQ({ limit, value }) {
+  [netModReqKind]: ({ limit, value }) => {
     return `sum of all mods equal ${fmtLimit(limit)}${nbs}${value}`;
   },
 
-  NET_SCORE_REQ({ limit, value }) {
+  [netScoreReqKind]: ({ limit, value }) => {
     return `sum of all scores equal ${fmtLimit(limit)}${nbs}${value}`;
   },
 
-  SCORE_REQ({ numScoresLimit, numScores, scoreLimit, score }) {
+  [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     const scoreLimitTxt = scoreLimitTexts[scoreLimit];
     const numScoresTxt =
       numScores === 1 ? `1${nbs}score` : `${numScores}${nbs}scores`;
@@ -88,7 +93,7 @@ const reqFuncs = {
    * @param {NetModReq} param0
    * @returns a func which evaluations whether a rollout meets the criteria
    */
-  NET_MOD_REQ({ limit, value }) {
+  [netModReqKind]: ({ limit, value }) => {
     if (limit === 'AT_LEAST') {
       return rollout => calcNetMod(rollout) >= value;
     } else if (limit === 'AT_MOST') {
@@ -102,7 +107,7 @@ const reqFuncs = {
    * @param {NetScoreReq} netScoreReq
    * @returns a func which evaluations whether a rollout meets the criteria
    */
-  NET_SCORE_REQ({ limit, value }) {
+  [netScoreReqKind]: ({ limit, value }) => {
     if (limit === 'AT_LEAST') {
       return rollout => calcNetScore(rollout) >= value;
     } else if (limit === 'AT_MOST') {
@@ -116,7 +121,7 @@ const reqFuncs = {
    * @param {ScoreReq} scoreRequirement
    * @returns a function which evaluates whether a rollout object meets the criteria specified
    */
-  SCORE_REQ({ numScoresLimit, numScores, scoreLimit, score }) {
+  [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     let filterRelevantScores;
     if (scoreLimit === 'AT_LEAST') {
       filterRelevantScores = filter(attrVal => attrVal >= score);

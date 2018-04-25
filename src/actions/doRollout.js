@@ -23,7 +23,7 @@ const doRollout = () => (dispatch, getState) => {
         payload: {
           newRollout,
           numRolls,
-        }
+        },
       });
       break;
     }

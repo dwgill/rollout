@@ -2,11 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import analyticsReduxMiddleware from './analytics';
 import Home from './pages/Home';
 import reducers from './reducers';
 import 'bulma/css/bulma.css';
 
-const middleware = [thunk];
+const middleware = [thunk, analyticsReduxMiddleware];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
