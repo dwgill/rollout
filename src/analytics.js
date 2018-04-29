@@ -53,8 +53,7 @@ function fmtMod(num) {
 const reqfmters = {
   [netModReqKind]: ({ limit, value }) =>
     `netMod${fmtLimit(limit)}${fmtMod(value)}`,
-  [netScoreReqKind]: ({ limit, value }) =>
-    `netScore${fmtLimit(limit)}${value}`,
+  [netScoreReqKind]: ({ limit, value }) => `netScore${fmtLimit(limit)}${value}`,
   [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     const limitNum = fmtLimit(numScoresLimit);
     const limitScore = fmtLimit(scoreLimit);
@@ -65,7 +64,12 @@ const reqfmters = {
 
 const fmtReq = req => reqfmters[req.kind](req);
 
-const fmtReqs = flow(map(fmtReq), sortBy(x => x), join(','), reqsStr => reqsStr || 'none');
+const fmtReqs = flow(
+  map(fmtReq),
+  sortBy(x => x),
+  join(','),
+  reqsStr => reqsStr || 'none',
+);
 
 const fmtRollout = flow(
   property('newRollout'),
@@ -75,14 +79,12 @@ const fmtRollout = flow(
 );
 
 const eventsMap = {
-  [SET_ATTRIBUTE_ROLL_TYPE]: trackEvent(
-    ({ type, payload }) => ({
-      category: categories.rollType,
-      action: type,
-      // value: null,
-      label: payload,
-    }),
-  ),
+  [SET_ATTRIBUTE_ROLL_TYPE]: trackEvent(({ type, payload }) => ({
+    category: categories.rollType,
+    action: type,
+    // value: null,
+    label: payload,
+  })),
   [SET_ROLL_IN_ORDER]: trackEvent(({ type, payload }) => ({
     category: categories.display,
     action: type,
@@ -127,14 +129,12 @@ const eventsMap = {
     // value: null,
     label: fmtReq(payload),
   })),
-  [REPLACE_REQUIREMENTS]: trackEvent(
-    ({ type, payload }) => ({
-      category: categories.requirements,
-      action: type,
-      // value: null,
-      label: fmtReqs(payload),
-    }),
-  ),
+  [REPLACE_REQUIREMENTS]: trackEvent(({ type, payload }) => ({
+    category: categories.requirements,
+    action: type,
+    // value: null,
+    label: fmtReqs(payload),
+  })),
   [REMOVE_REQUIREMENT]: trackEvent(({ type, payload }, prevState) => ({
     category: categories.requirements,
     action: type,
@@ -147,14 +147,12 @@ const eventsMap = {
     // value: null,
     // label: null,
   })),
-  [PRESET_COLVILLE_CLASSIC]: trackEvent(
-    ({ type }) => ({
-      category: categories.presets,
-      action: type,
-      // value: null,
-      // label: null,
-    }),
-  ),
+  [PRESET_COLVILLE_CLASSIC]: trackEvent(({ type }) => ({
+    category: categories.presets,
+    action: type,
+    // value: null,
+    // label: null,
+  })),
   [PRESET_MERCER]: trackEvent(({ type }) => ({
     category: categories.presets,
     action: type,
