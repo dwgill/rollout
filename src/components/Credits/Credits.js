@@ -25,6 +25,10 @@ const Credits = () => (
         Toptal Subtle Patterns
       </A>.
     </li>
+    <li>
+      Cubes icon by <A link="http://lorcblog.blogspot.com/">Lorc</A> under{' '}
+      <A link="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</A>
+    </li>
   </ul>
 );
 
