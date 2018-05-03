@@ -3,8 +3,7 @@ import RollTypeSelector from '../RollTypeSelector';
 import styles from './styles.module.css';
 import DisplaySettings from '../DisplaySettings';
 import RequirementDisplay from '../RequirementDisplay';
-// import RolloutDisplay from '../RolloutDisplay';
-import RolloutDisplay from '../NewRolloutDisplay';
+import RolloutDisplay from '../RolloutDisplay';
 
 const AttributeGenerator = () => (
   <div className={styles.container}>

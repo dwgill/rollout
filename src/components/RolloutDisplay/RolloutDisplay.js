@@ -1,24 +1,19 @@
-import { connect } from 'react-redux';
-import RolloutDisplayView from './RolloutDisplayView';
-import doRollout from '../../actions/doRollout';
+import React from 'react';
+import RollCount from './RollCount';
+import styles from './styles.module.css';
+import RollButton from './RollButton';
+import Results from './Results';
 
-const mapStateToProps = ({
-  rollout: { stale, attributes, numRolls, failure },
-  displaySettings: { rollInOrder, displayDice, forceStale },
-  requirements,
-}) => ({
-  requireStaleAttsToRoll: forceStale,
-  attributesAreStale: stale,
-  attributes,
-  showAtributeNames: rollInOrder,
-  displayDice,
-  numRolls,
-  rolloutFailed: failure,
-  numRequirements: requirements.length,
-});
+const RolloutDisplay = () => (
+  <>
+    <div className={styles.topPart}>
+      <Results />
+    </div>
+    <div className={styles.bottomPart}>
+      <RollCount />
+      <RollButton />
+    </div>
+  </>
+);
 
-const mapDispatchToProps = {
-  onRollout: doRollout,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RolloutDisplayView);
+export default RolloutDisplay;
