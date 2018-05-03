@@ -3,6 +3,7 @@ import sum from 'lodash/fp/sum';
 import isEmpty from 'lodash/fp/isEmpty';
 import entries from 'lodash/fp/entries';
 import orderAttributesByName from '../../../../util/orderAttributesByName';
+import { calcMod } from '../../../../util/modifiers';
 import styles from './styles.module.css';
 
 const fmtAttrDice = ({ constituents, discarded }) => {
@@ -15,20 +16,43 @@ const fmtAttrDice = ({ constituents, discarded }) => {
   return `${included} ${notIncluded}`;
 };
 
-const mkRenderRow = ({ displayDice, displayAttNames, stale }) => ([
+const fmtMod = score => {
+  const mod = calcMod(score);
+  return mod >= 0 ? `(+${mod})` : `(${mod})`;
+};
+
+const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
   attName,
   attr,
-]) => (
-  <p key={attName} className={stale ? styles.staleAttribute : styles.attribute}>
-    {displayAttNames ? attName.concat(' ') : ''}
-    {sum(attr.constituents)}
-    {displayDice ? ' '.concat(fmtAttrDice(attr)) : ''}
-  </p>
-);
+]) => {
+  const score = sum(attr.constituents);
 
-const OrderedView = ({ stale, attributes, displayDice, displayAttNames }) => {
+  return (
+    <p
+      key={attName}
+      className={stale ? styles.staleAttribute : styles.attribute}
+    >
+      {displayAttNames ? attName.concat(' ') : ''}
+      {score}
+      {displayMods ? ' '.concat(fmtMod(score)) : ''}
+      {displayDice ? ' '.concat(fmtAttrDice(attr)) : ''}
+    </p>
+  );
+};
+const OrderedView = ({
+  stale,
+  attributes,
+  displayDice,
+  displayMods,
+  displayAttNames,
+}) => {
   const scoresByName = orderAttributesByName(attributes, true);
-  const renderRow = mkRenderRow({ stale, displayDice, displayAttNames });
+  const renderRow = mkRenderRow({
+    stale,
+    displayDice,
+    displayAttNames,
+    displayMods,
+  });
   return (
     <div className={styles.container}>
       {entries(scoresByName).map(renderRow)}

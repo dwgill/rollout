@@ -3,11 +3,12 @@ import OrderedView from './OrderedView';
 
 const mapStateToProps = ({
   rollout: { stale, attributes },
-  settings: { rollInOrder, displayDice },
+  settings: { rollInOrder, displayDice, displayMods },
 }) => ({
   stale,
   attributes,
   displayDice,
+  displayMods,
   displayAttNames: rollInOrder,
 });
 

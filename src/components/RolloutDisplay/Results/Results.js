@@ -6,11 +6,11 @@ import Ordered from './Ordered';
 
 const mapStateToProps = ({
   rollout: { failure, attributes },
-  settings: { rollInOrder, displayDice },
+  settings: { rollInOrder, displayDice, displayMods },
 }) => ({
   rolloutFailed: Boolean(failure),
   noAttributes: attributes.length === 0,
-  orderedScores: Boolean(rollInOrder || displayDice),
+  orderedScores: Boolean(rollInOrder || displayDice || displayMods),
 });
 
 const mapDispatchToProps = {};

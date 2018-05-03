@@ -7,17 +7,17 @@
 }
 
 .attrCommon {
-    composes: handwritingFont from '../../styles.module.css';
-    composes: is-size-2-desktop from global;
-    composes: is-size-3-touch from global;
+  composes: handwritingFont from '../../styles.module.css';
+  composes: is-size-2-desktop from global;
+  composes: is-size-3-touch from global;
 }
 
 .attribute {
-    composes: attrCommon;
-    composes: freshColor from '../../styles.module.css';
+  composes: attrCommon;
+  composes: freshColor from '../../styles.module.css';
 }
 
 .staleAttribute {
-    composes: attrCommon;
-    composes: staleColor from '../../styles.module.css';
+  composes: attrCommon;
+  composes: staleColor from '../../styles.module.css';
 }

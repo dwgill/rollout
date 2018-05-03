@@ -2,6 +2,7 @@ import {
   SET_DISPLAY_DICE,
   SET_ROLL_IN_ORDER,
   SET_FORCE_STALE,
+  SET_DISPLAY_MODS,
 } from '../actions/types';
 
 const initialState = {
@@ -40,6 +41,16 @@ const settingsReducer = (state = initialState, action) => {
         : {
             ...state,
             forceStale: newForceStale,
+          };
+    }
+    case SET_DISPLAY_MODS: {
+      const { payload: newDisplayMods } = action;
+      const { displayMods: oldDisplayMods } = state;
+      return newDisplayMods === oldDisplayMods
+        ? state
+        : {
+            ...state,
+            displayMods: newDisplayMods,
           };
     }
     default: {
