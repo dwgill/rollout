@@ -1,0 +1,34 @@
+.commonText {
+  composes: handwritingFont from '../../styles.module.css';
+  composes: is-size-1-desktop from global;
+  composes: is-size-2-touch from global;
+}
+
+.commonText:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.freshText {
+  composes: commonText;
+  composes: freshColor from '../../styles.module.css';
+}
+
+.staleText {
+  composes: commonText;
+  composes: staleColor from '../../styles.module.css';
+}
+
+.container {
+  composes: fillTopPart from '../../styles.module.css';
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}

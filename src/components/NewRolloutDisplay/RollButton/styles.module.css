@@ -1,0 +1,5 @@
+.btn {
+  composes: button from global;
+  composes: is-large from global;
+  composes: is-dark from global;
+}

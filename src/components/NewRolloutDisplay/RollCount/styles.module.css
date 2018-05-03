@@ -1,0 +1,14 @@
+.common {
+  composes: handwritingFont from '../styles.module.css';
+  composes: is-size-2 from global;
+}
+
+.stale {
+  composes: common;
+  composes: staleColor from '../styles.module.css';
+}
+
+.fresh {
+  composes: common;
+  composes: freshColor from '../styles.module.css';
+}

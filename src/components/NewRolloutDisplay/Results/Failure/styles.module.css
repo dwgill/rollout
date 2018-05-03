@@ -1,0 +1,26 @@
+.text {
+  composes: handwritingFont from '../../styles.module.css';
+  composes: freshColor from '../../styles.module.css';
+  composes: is-size-2-desktop from global;
+  composes: is-size-3-tablet from global;
+  composes: is-size-4-mobile from global;
+  composes: has-text-centered from global;
+}
+
+.container {
+  composes: fillTopPart from '../../styles.module.css';
+  padding-top: 4rem;
+}
+
+/** 
+  * Bulma Mobile query
+  * Bulma mixin:
+  *   https://github.com/jgthms/bulma/blob/master/sass/utilities/mixins.sass#L81
+  * References tablet constant here:
+  *   https://github.com/jgthms/bulma/blob/master/sass/utilities/initial-variables.sass#L51
+  */
+@media screen and (max-width: 768px) {
+  .container {
+    padding-bottom: 4rem;
+  }
+}
