@@ -6,7 +6,7 @@ import Ordered from './Ordered';
 
 const mapStateToProps = ({
   rollout: { failure, attributes },
-  displaySettings: { rollInOrder, displayDice },
+  settings: { rollInOrder, displayDice },
 }) => ({
   rolloutFailed: Boolean(failure),
   noAttributes: attributes.length === 0,

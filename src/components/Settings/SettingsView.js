@@ -2,7 +2,7 @@ import React from 'react';
 import SectionHeading from '../SectionHeading';
 import styles from './styles.module.css';
 
-const DisplaySettingsView = ({
+const SettingsView = ({
   rollInOrder,
   displayDice,
   forceStale,
@@ -11,7 +11,7 @@ const DisplaySettingsView = ({
   onCheckRequireStale: handleCheckRequireStale,
 }) => (
   <>
-    <SectionHeading>Display Settings</SectionHeading>
+    <SectionHeading>Settings</SectionHeading>
     <label className={styles.label}>
       <input
         type="checkbox"
@@ -39,4 +39,4 @@ const DisplaySettingsView = ({
   </>
 );
 
-export default DisplaySettingsView;
+export default SettingsView;

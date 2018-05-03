@@ -1,7 +1,7 @@
 import React from 'react';
 import RollTypeSelector from '../RollTypeSelector';
 import styles from './styles.module.css';
-import DisplaySettings from '../DisplaySettings';
+import Settings from '../Settings';
 import RequirementDisplay from '../RequirementDisplay';
 import RolloutDisplay from '../RolloutDisplay';
 
@@ -15,7 +15,7 @@ const AttributeGenerator = () => (
         <RequirementDisplay />
       </div>
       <div className={styles.child}>
-        <DisplaySettings />
+        <Settings />
       </div>
     </div>
     <div className={styles.rightSide}>

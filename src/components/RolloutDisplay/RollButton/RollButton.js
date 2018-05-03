@@ -3,7 +3,7 @@ import doRollout from '../../../actions/doRollout';
 import RollButtonView from './RollButtonView';
 
 const mapStateToProps = ({
-  displaySettings: { forceStale },
+  settings: { forceStale },
   rollout: { stale },
 }) => ({
   stale,

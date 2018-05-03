@@ -10,7 +10,7 @@ const initialState = {
   forceStale: true,
 };
 
-const displaySettingsReducer = (state = initialState, action) => {
+const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DISPLAY_DICE: {
       const { payload: newDisplayDice } = action;
@@ -48,4 +48,4 @@ const displaySettingsReducer = (state = initialState, action) => {
   }
 };
 
-export default displaySettingsReducer;
+export default settingsReducer;

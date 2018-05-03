@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import attributeRollTypeReducer from './attributeRollType';
-import displaySettingsReducer from './displaySettings';
+import settingsReducer from './settings';
 import rolloutReducer from './rollout';
 import requirementsReducer from './requirements';
 
 const consolidatedReducers = combineReducers({
   attributeRollType: attributeRollTypeReducer,
-  displaySettings: displaySettingsReducer,
+  settings: settingsReducer,
   rollout: rolloutReducer,
   requirements: requirementsReducer,
 });

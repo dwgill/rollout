@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import setDisplayDice from '../../actions/setDisplayDice';
 import setForceStale from '../../actions/setForceStale';
 import setRollInOrder from '../../actions/setRollInOrder';
-import DisplaySettingsView from './DisplaySettingsView';
+import SettingsView from './SettingsView';
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
 function handleSetDisplayDice(event) {
@@ -20,7 +20,7 @@ function handleSetForceStale(event) {
 }
 
 const mapStateToProps = ({
-  displaySettings: { rollInOrder, displayDice, forceStale },
+  settings: { rollInOrder, displayDice, forceStale },
 }) => ({
   rollInOrder,
   displayDice,
@@ -34,5 +34,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  DisplaySettingsView,
+  SettingsView,
 );
