@@ -7,10 +7,12 @@
 
 .staleColor {
   composes: has-text-grey from global;
+  border-color: hsl(0, 0%, 48%) !important; /* bulma grey */
 }
 
 .freshColor {
   composes: has-text-grey-darker from global;
+  border-color: hsl(0, 0%, 21%) !important; /* bulma grey-darker */
 }
 
 .fillTopPart {

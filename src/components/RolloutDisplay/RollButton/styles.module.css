@@ -1,5 +1,33 @@
-.btn {
+.btnCommon {
+  composes: handwritingFont from '../styles.module.css';
   composes: button from global;
   composes: is-large from global;
-  composes: is-dark from global;
+  composes: is-text from global;
+  text-decoration: none !important;
+  border-style: dashed !important;
+  border-width: 4px !important;
+}
+
+.btnCommon:focus {
+  box-shadow: none !important;
+}
+
+.btnFresh {
+  composes: btnCommon;
+  composes: freshColor from '../styles.module.css';
+}
+
+.btnStale {
+  composes: btnCommon;
+  composes: staleColor from '../styles.module.css';
+}
+
+.noBtn {
+}
+
+.noBtnText {
+  composes: handwritingFont from '../styles.module.css';
+  composes: has-text-grey-darker from global;
+  composes: has-text-centered from global;
+  composes: is-size-5 from global;
 }
