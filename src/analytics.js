@@ -38,8 +38,9 @@ const categories = {
   presets: 'Presets',
 };
 
-function fmtLimit(limitStr) {
-  return limitStr === 'AT_LEAST' ? '<=' : limitStr === 'AT_MOST' ? '>=' : '==';
+function fmtLimitValue(limitStr, value) {
+  const fmtLimitStr = limitStr === 'AT_LEAST' ? 'atLeast' : limitStr === 'AT_MOST' ? 'atMost' : 'exactly';
+  return `${fmtLimitStr}(${value})`;
 }
 
 function fmtMod(num) {
@@ -52,13 +53,12 @@ function fmtMod(num) {
 
 const reqfmters = {
   [netModReqKind]: ({ limit, value }) =>
-    `netMod${fmtLimit(limit)}${fmtMod(value)}`,
-  [netScoreReqKind]: ({ limit, value }) => `netScore${fmtLimit(limit)}${value}`,
+    `netMod_${fmtLimitValue(limit, fmtMod(value))}`,
+  [netScoreReqKind]: ({ limit, value }) => `netScore_${fmtLimitValue(limit, value)}`,
   [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
-    const limitNum = fmtLimit(numScoresLimit);
-    const limitScore = fmtLimit(scoreLimit);
-    const fmtedScore = fmtMod(score);
-    return `scoreReq${limitNum}${numScores}${limitScore}${fmtedScore}`;
+    const fmtNumScoresLimit = fmtLimitValue(numScoresLimit, numScores);
+    const fmtScoresLimit = fmtLimitValue(scoreLimit, score);
+    return `scores_${fmtNumScoresLimit}${fmtScoresLimit}`;
   },
 };
 
