@@ -1,8 +1,14 @@
 import { connect } from 'react-redux';
 import setDisplayDice from '../../actions/setDisplayDice';
+import setDisplayMods from '../../actions/setDisplayMods';
 import setForceStale from '../../actions/setForceStale';
 import setRollInOrder from '../../actions/setRollInOrder';
-import setDisplayMods from '../../actions/setDisplayMods';
+import {
+  displayDice as getDisplayDice,
+  displayMods as getDisplayMods,
+  forceStale as getForceStale,
+  rollInOrder as getRollInOrder,
+} from '../../selectors';
 import SettingsView from './SettingsView';
 
 /** @param {React.FormEvent<HTMLInputElement>} event */
@@ -25,13 +31,11 @@ function handleSetDisplayMods(event) {
   return setDisplayMods(event.currentTarget.checked);
 }
 
-const mapStateToProps = ({
-  settings: { rollInOrder, displayDice, forceStale, displayMods },
-}) => ({
-  rollInOrder,
-  displayDice,
-  forceStale,
-  displayMods,
+const mapStateToProps = state => ({
+  rollInOrder: getRollInOrder(state),
+  displayDice: getDisplayDice(state),
+  forceStale: getForceStale(state),
+  displayMods: getDisplayMods(state),
 });
 
 const mapDispatchToProps = {

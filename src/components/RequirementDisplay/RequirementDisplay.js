@@ -1,8 +1,9 @@
-import RequirementDisplayView from './RequirementDisplayView';
 import { connect } from 'react-redux';
+import { noRequirements as determineNoRequirements } from '../../selectors';
+import RequirementDisplayView from './RequirementDisplayView';
 
-const mapStateToProps = ({ requirements }) => ({
-  noReqs: !requirements.length || requirements.length < 1,
+const mapStateToProps = state => ({
+  noReqs: determineNoRequirements(state),
 });
 
 const mapDispatchToProps = {};

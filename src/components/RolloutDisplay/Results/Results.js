@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  noAttributes as determineNoAttributes,
+  rolloutHasFailed as determineRolloutHasFailed,
+  verticallyPresentedScores as determineVerticallyPresentedScores,
+} from '../../../selectors';
 import Failure from './Failure';
-import Unordered from './Unordered';
 import Ordered from './Ordered';
+import Unordered from './Unordered';
 
-const mapStateToProps = ({
-  rollout: { failure, attributes },
-  settings: { rollInOrder, displayDice, displayMods },
-}) => ({
-  rolloutFailed: Boolean(failure),
-  noAttributes: attributes.length === 0,
-  orderedScores: Boolean(rollInOrder || displayDice || displayMods),
+const mapStateToProps = state => ({
+  rolloutFailed: determineRolloutHasFailed(state),
+  noAttributes: determineNoAttributes(state),
+  orderedScores: determineVerticallyPresentedScores(state),
 });
 
 const mapDispatchToProps = {};

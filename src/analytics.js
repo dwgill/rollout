@@ -1,34 +1,34 @@
-import { createMiddleware } from 'redux-beacon';
+import combineEvents from '@redux-beacon/combine-events';
 import GoogleAnalyticsGtag, {
   trackEvent,
 } from '@redux-beacon/google-analytics-gtag';
-import combineEvents from '@redux-beacon/combine-events';
-import map from 'lodash/fp/map';
 import flow from 'lodash/fp/flow';
-import sum from 'lodash/fp/sum';
-import property from 'lodash/fp/property';
 import join from 'lodash/fp/join';
+import map from 'lodash/fp/map';
+import property from 'lodash/fp/property';
 import sortBy from 'lodash/fp/sortBy';
+import sum from 'lodash/fp/sum';
+import { createMiddleware } from 'redux-beacon';
 import {
-  netModReqKind,
-  scoreReqKind,
-  netScoreReqKind,
-} from './util/requirements';
-import {
-  SET_ATTRIBUTE_ROLL_TYPE,
-  SET_ROLL_IN_ORDER,
-  SET_FORCE_STALE,
-  SET_DISPLAY_DICE,
+  ADD_REQUIREMENT,
   DO_ROLLOUT,
   FAIL_ROLLOUT,
-  ADD_REQUIREMENT,
-  REPLACE_REQUIREMENTS,
-  REMOVE_REQUIREMENT,
   PRESET_COLVILLE,
   PRESET_COLVILLE_CLASSIC,
   PRESET_MERCER,
   PRESET_MERCER_PLUS,
+  REMOVE_REQUIREMENT,
+  REPLACE_REQUIREMENTS,
+  SET_ATTRIBUTE_ROLL_TYPE,
+  SET_DISPLAY_DICE,
+  SET_FORCE_STALE,
+  SET_ROLL_IN_ORDER,
 } from './actions/types';
+import {
+  netModReqKind,
+  netScoreReqKind,
+  scoreReqKind,
+} from './util/requirements';
 
 const categories = {
   display: 'Display',
@@ -39,7 +39,15 @@ const categories = {
 };
 
 function fmtLimitValue(limitStr, value) {
-  const fmtLimitStr = limitStr === 'AT_LEAST' ? 'atLeast' : limitStr === 'AT_MOST' ? 'atMost' : 'exactly';
+  let fmtLimitStr;
+  if (limitStr === 'AT_LEAST') {
+    fmtLimitStr = 'atLeast';
+  } else if (limitStr === 'AT_MOST') {
+    fmtLimitStr = 'atMost';
+  } else {
+    fmtLimitStr = 'exactly';
+  }
+
   return `${fmtLimitStr}(${value})`;
 }
 
@@ -54,7 +62,8 @@ function fmtMod(num) {
 const reqfmters = {
   [netModReqKind]: ({ limit, value }) =>
     `netMod_${fmtLimitValue(limit, fmtMod(value))}`,
-  [netScoreReqKind]: ({ limit, value }) => `netScore_${fmtLimitValue(limit, value)}`,
+  [netScoreReqKind]: ({ limit, value }) =>
+    `netScore_${fmtLimitValue(limit, value)}`,
   [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     const fmtNumScoresLimit = fmtLimitValue(numScoresLimit, numScores);
     const fmtScoresLimit = fmtLimitValue(scoreLimit, score);

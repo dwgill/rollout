@@ -1,7 +1,11 @@
-import random from 'lodash/fp/random';
-import times from 'lodash/fp/times';
 import min from 'lodash/fp/min';
 import pullAt from 'lodash/fp/pullAt';
+import random from 'lodash/fp/random';
+import times from 'lodash/fp/times';
+
+export const STANDARD = 'STANDARD';
+export const CLASSIC = 'CLASSIC';
+export const AUGMENTED = 'AUGMENTED';
 
 /**
  * @param {number} x The number of d6s to roll.
@@ -33,9 +37,9 @@ export const augmented = () => ({
 });
 
 export const types = {
-  STANDARD: standard,
-  CLASSIC: classic,
-  AUGMENTED: augmented,
+  [STANDARD]: standard,
+  [CLASSIC]: classic,
+  [AUGMENTED]: augmented,
 };
 
 /**

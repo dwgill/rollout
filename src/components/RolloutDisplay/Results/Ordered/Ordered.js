@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
+import {
+  displayDice as determineDisplayDice,
+  displayMods as determineDisplayMods,
+  rollInOrder as determineRollInOrder,
+  rolloutAttributes as getRolloutAttributes,
+  rolloutIsStale as determineRolloutIsStale,
+} from '../../../../selectors';
 import OrderedView from './OrderedView';
 
-const mapStateToProps = ({
-  rollout: { stale, attributes },
-  settings: { rollInOrder, displayDice, displayMods },
-}) => ({
-  stale,
-  attributes,
-  displayDice,
-  displayMods,
-  displayAttNames: rollInOrder,
+const mapStateToProps = state => ({
+  stale: determineRolloutIsStale(state),
+  attributes: getRolloutAttributes(state),
+  displayDice: determineDisplayDice(state),
+  displayMods: determineDisplayMods(state),
+  displayAttNames: determineRollInOrder(state),
 });
 
 const mapDispatchToProps = {};

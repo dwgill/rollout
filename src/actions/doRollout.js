@@ -1,8 +1,8 @@
 import flow from 'lodash/fp/flow';
 import map from 'lodash/fp/map';
 import overEvery from 'lodash/fp/overEvery';
-import rollout from '../util/rollout';
 import { convertReqToPredicate } from '../util/requirements';
+import rollout from '../util/rollout';
 import { DO_ROLLOUT, FAIL_ROLLOUT } from './types';
 
 const doRollout = () => (dispatch, getState) => {

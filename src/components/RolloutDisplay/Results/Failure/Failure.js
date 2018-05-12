@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
+import { numRequirements as getNumRequirements } from '../../../../selectors';
 import FailureView from './FailureView';
 
-const mapStateToProps = ({ requirements }) => ({
-  numReqs: requirements.length,
+const mapStateToProps = state => ({
+  numReqs: getNumRequirements(state),
 });
 
 const mapDispatchToProps = {};
