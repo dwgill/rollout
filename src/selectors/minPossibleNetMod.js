@@ -8,9 +8,9 @@ import { AUGMENTED } from '../util/attributeRolls';
 const minPossibleNetMod = state => {
   const rollType = getAttributeRollType(state);
   if (rollType.toUpperCase() === AUGMENTED) {
-    return 8 * 6;
+    return -1 * 6;
   } else {
-    return 3 * 6;
+    return -4 * 6;
   }
 };
 

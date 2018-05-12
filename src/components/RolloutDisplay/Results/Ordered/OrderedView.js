@@ -1,9 +1,10 @@
-import React from 'react';
-import sum from 'lodash/fp/sum';
-import isEmpty from 'lodash/fp/isEmpty';
+import cls from 'classnames';
 import entries from 'lodash/fp/entries';
-import orderAttributesByName from '../../../../util/orderAttributesByName';
+import isEmpty from 'lodash/fp/isEmpty';
+import sum from 'lodash/fp/sum';
+import React from 'react';
 import { calcMod } from '../../../../util/modifiers';
+import orderAttributesByName from '../../../../util/orderAttributesByName';
 import styles from './styles.module.css';
 
 const fmtAttrDice = ({ constituents, discarded }) => {
@@ -26,11 +27,18 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
   attr,
 ]) => {
   const score = sum(attr.constituents);
-
+  const numSettings = [displayDice, displayMods, displayAttNames].filter(x => x).length;
+  const className = cls({
+    [styles.staleAttribute]: stale,
+    [styles.attribute]: !stale,
+    [styles.attrFontShortLine]: numSettings <= 1,
+    [styles.attrFontMedLine]: numSettings === 2,
+    [styles.attrFontLongLine]: numSettings >= 3,
+  });
   return (
     <p
       key={attName}
-      className={stale ? styles.staleAttribute : styles.attribute}
+      className={className}
     >
       {displayAttNames ? attName.concat(' ') : ''}
       {score}
@@ -39,6 +47,7 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
     </p>
   );
 };
+
 const OrderedView = ({
   stale,
   attributes,
@@ -46,7 +55,8 @@ const OrderedView = ({
   displayMods,
   displayAttNames,
 }) => {
-  const scoresByName = orderAttributesByName(attributes, true);
+  const verboseAttNames = displayAttNames && !(displayDice || displayMods);
+  const scoresByName = orderAttributesByName(attributes, verboseAttNames);
   const renderRow = mkRenderRow({
     stale,
     displayDice,

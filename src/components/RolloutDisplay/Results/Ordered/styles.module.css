@@ -8,8 +8,6 @@
 
 .attrCommon {
   composes: handwritingFont from '../../styles.module.css';
-  composes: is-size-2-desktop from global;
-  composes: is-size-3-touch from global;
 }
 
 .attribute {
@@ -20,4 +18,30 @@
 .staleAttribute {
   composes: attrCommon;
   composes: staleColor from '../../styles.module.css';
+}
+
+.attrFontCommon {
+  composes: is-size-2-desktop from global;
+  composes: is-size-3-tablet from global;
+}
+
+.attrFontShortLine {
+  composes: attrFontCommon;
+  composes: is-size-3-mobile from global;
+}
+
+.attrFontMedLine {
+  composes: attrFontCommon;
+  composes: is-size-4-mobile from global;
+}
+
+.attrFontLongLine {
+  composes: attrFontCommon;
+}
+
+/* Bulma Mobile Query */
+@media screen and (max-width: 768px) {
+  .attrFontLongLine {
+    font-size: 6vw !important;
+  }
 }

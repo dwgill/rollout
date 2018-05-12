@@ -8,9 +8,9 @@ import { AUGMENTED } from '../util/attributeRolls';
 const minPossibleTotalScore = state => {
   const rollType = getAttributeRollType(state);
   if (rollType.toUpperCase() === AUGMENTED) {
-    return -1 * 6;
+    return 8 * 6;
   } else {
-    return -4 * 6;
+    return 3 * 6;
   }
 };
 
