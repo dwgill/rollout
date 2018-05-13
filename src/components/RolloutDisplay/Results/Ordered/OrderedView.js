@@ -27,7 +27,8 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
   attr,
 ]) => {
   const score = sum(attr.constituents);
-  const numSettings = [displayDice, displayMods, displayAttNames].filter(x => x).length;
+  const numSettings = [displayDice, displayMods, displayAttNames].filter(x => x)
+    .length;
   const className = cls({
     [styles.staleAttribute]: stale,
     [styles.attribute]: !stale,
@@ -36,10 +37,7 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
     [styles.attrFontLongLine]: numSettings >= 3,
   });
   return (
-    <p
-      key={attName}
-      className={className}
-    >
+    <p key={attName} className={className}>
       {displayAttNames ? attName.concat(' ') : ''}
       {score}
       {displayMods ? ' '.concat(fmtMod(score)) : ''}
