@@ -9,12 +9,12 @@ const mockReqs = [mockNetModReq, mockNetScoreReq, mockScoreReq];
 
 describe('addRequirementList()', () => {
   it('produces an action object with the ADD_REQUIREMENT type', () => {
-    expect(addRequirement().type).toEqual(ADD_REQUIREMENT);
+    expect(addRequirement()).toHaveProperty('type', ADD_REQUIREMENT);
   });
 
   it('produces an action object with the provided payload', () => {
     const testVal = 'testVal';
-    expect(addRequirement(testVal).payload).toEqual(testVal);
+    expect(addRequirement(testVal)).toHaveProperty('payload', testVal);
   });
 
   it('works well with requirement objects', () => {

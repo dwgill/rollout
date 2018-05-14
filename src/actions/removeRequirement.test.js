@@ -10,12 +10,12 @@ const mockReqs = [mockNetModReq, mockNetScoreReq, mockScoreReq];
 
 describe('removeRequirement()', () => {
   it('produces an action object with the REMOVE_REQUIREMENT type', () => {
-    expect(removeRequirement().type).toEqual(REMOVE_REQUIREMENT);
+    expect(removeRequirement()).toHaveProperty('type', REMOVE_REQUIREMENT);
   });
 
   it('produces an action object with the provided payload', () => {
     const testVal = 'testVal';
-    expect(removeRequirement(testVal).payload).toEqual(testVal);
+    expect(removeRequirement(testVal)).toHaveProperty('payload', testVal);
   });
 
   it('works well with number payloads', () => {

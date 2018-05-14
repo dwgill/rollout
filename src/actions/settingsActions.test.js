@@ -16,7 +16,7 @@ function testBooleanSetterActionCreator({
 }) {
   describe(`${acName}()`, () => {
     it(`produces an action object with the type ${acType}`, () => {
-      expect(acFunc().type).toEqual(acType);
+      expect(acFunc()).toHaveProperty('type', acType);
     });
 
     it('works well with boolean payloads', () => {
