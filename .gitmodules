@@ -1,0 +1,3 @@
+[submodule "src/rollout-core"]
+	path = src/rollout-core
+	url = git@github.com:dwgill/rollout-core.git
