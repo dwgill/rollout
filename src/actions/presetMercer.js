@@ -1,14 +1,15 @@
-import { PRESET_MERCER } from './types';
+import { STANDARD } from '../rollout-core/AttributeRollKinds';
+import { AT_LEAST, NetScoreConstraint } from '../rollout-core/ConstraintKinds';
 import replaceRequirements from './replaceRequirements';
 import setAttributeRollType from './setAttributeRollType';
 import setRollInOrder from './setRollInOrder';
-import { netScoreReq } from '../util/requirements';
+import { PRESET_MERCER } from './types';
 
 const presetMercer = () => dispatch => {
   dispatch({ type: PRESET_MERCER });
   dispatch(setRollInOrder(false));
-  dispatch(setAttributeRollType('STANDARD'));
-  dispatch(replaceRequirements([netScoreReq('AT_LEAST', 70)]));
+  dispatch(setAttributeRollType(STANDARD));
+  dispatch(replaceRequirements([NetScoreConstraint(AT_LEAST, 70)]));
 };
 
 export default presetMercer;

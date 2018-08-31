@@ -3,12 +3,14 @@ import keys from 'lodash/fp/keys';
 import SectionHeading from '../SectionHeading';
 import SectionSubHeading from '../SectionSubHeading';
 import styles from './styles.module.css';
-import { types as rollTypes } from '../../util/attributeRolls';
 import {
   augmentedDescription,
   classicDescription,
   standardDescription,
 } from './descriptions';
+import * as rollTypes from '../../rollout-core/AttributeRollKinds';
+
+
 
 const options = keys(rollTypes);
 
@@ -48,7 +50,7 @@ const RollTypeSelectorView = ({
         className={styles.selectElement}
       >
         {options.map(opt => (
-          <option value={opt} key={opt}>
+          <option value={rollTypes[opt]} key={opt}>
             {formatOption(opt || '')}
           </option>
         ))}

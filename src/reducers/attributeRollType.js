@@ -1,8 +1,8 @@
-import { types as rollTypes } from '../util/attributeRolls';
 import keys from 'lodash/fp/keys';
 import { SET_ATTRIBUTE_ROLL_TYPE } from '../actions/types';
+import * as rollTypes from '../rollout-core/AttributeRollKinds';
 
-const validTypes = keys(rollTypes).sort();
+const validTypes = keys(rollTypes);
 
 const initialState = validTypes.slice(-1).pop();
 

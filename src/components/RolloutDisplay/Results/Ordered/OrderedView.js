@@ -3,7 +3,7 @@ import entries from 'lodash/fp/entries';
 import isEmpty from 'lodash/fp/isEmpty';
 import sum from 'lodash/fp/sum';
 import React from 'react';
-import { calcMod } from '../../../../util/modifiers';
+import calcMod from '../../../../rollout-core/calculateModifier';
 import orderAttributesByName from '../../../../util/orderAttributesByName';
 import styles from './styles.module.css';
 

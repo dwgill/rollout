@@ -1,16 +1,17 @@
-// import replaceRequirements from './replaceRequirements';
-// import setAttributeRollType from './setAttributeRollType';
-// import setRollInOrder from './setRollInOrder';
 import entries from 'lodash/fp/entries';
-import { netModReq, netScoreReq, scoreReq } from '../util/requirements';
+import { STANDARD } from '../rollout-core/AttributeRollKinds';
+import {
+  AT_LEAST,
+  NetModConstraint,
+  NetScoreConstraint,
+  ScoreConstraint,
+} from '../rollout-core/ConstraintKinds';
 import presetColville from './presetColville';
 import presetColvilleClassic from './presetColvilleClassic';
 import presetMercer from './presetMercer';
 import presetMercerPlus from './presetMercerPlus';
 import replaceRequirements from './replaceRequirements';
-// import replaceRequirements from './replaceRequirements';
 import setAttributeRollType from './setAttributeRollType';
-// import setAttributeRollType from './setAttributeRollType';
 import setRollInOrder from './setRollInOrder';
 import {
   PRESET_COLVILLE,
@@ -37,9 +38,9 @@ testPresetActionCreator({
   dispatches: {
     'dispatches the PRESET_COLVILLE action': { type: PRESET_COLVILLE },
     'configures to roll in order': setRollInOrder(true),
-    'sets the roll type to standard': setAttributeRollType('STANDARD'),
+    'sets the roll type to standard': setAttributeRollType(STANDARD),
     'requires a net mod of at least +2': replaceRequirements([
-      netModReq('AT_LEAST', 2),
+      NetModConstraint(AT_LEAST, 2),
     ]),
   },
 });
@@ -52,9 +53,9 @@ testPresetActionCreator({
       type: PRESET_COLVILLE_CLASSIC,
     },
     'configures to roll in order': setRollInOrder(true),
-    'sets the roll type to standard': setAttributeRollType('STANDARD'),
+    'sets the roll type to standard': setAttributeRollType(STANDARD),
     'requires at least 2 scores of at least 15': replaceRequirements([
-      scoreReq('AT_LEAST', 2, 'AT_LEAST', 15),
+      ScoreConstraint(AT_LEAST, 2, AT_LEAST, 15),
     ]),
   },
 });
@@ -65,9 +66,9 @@ testPresetActionCreator({
   dispatches: {
     'dispatches the PRESET_MERCER action': { type: PRESET_MERCER },
     'configures to not roll in order': setRollInOrder(false),
-    'sets the roll type to standard': setAttributeRollType('STANDARD'),
+    'sets the roll type to standard': setAttributeRollType(STANDARD),
     'requires a total score of at least 70': replaceRequirements([
-      netScoreReq('AT_LEAST', 70),
+      NetScoreConstraint(AT_LEAST, 70),
     ]),
   },
 });
@@ -78,9 +79,9 @@ testPresetActionCreator({
   dispatches: {
     'dispatches the PRESET_MERCER_PLUS action': { type: PRESET_MERCER_PLUS },
     'configures to not roll in order': setRollInOrder(false),
-    'sets the roll type to standard': setAttributeRollType('STANDARD'),
+    'sets the roll type to standard': setAttributeRollType(STANDARD),
     'requires a total score of at least 75': replaceRequirements([
-      netScoreReq('AT_LEAST', 75),
+      NetScoreConstraint(AT_LEAST, 75),
     ]),
   },
 });

@@ -1,9 +1,9 @@
 import flow from 'lodash/fp/flow';
 import map from 'lodash/fp/map';
-import { fmtReq } from '../util/requirements';
+import displayRequirement from '../rollout-core/displayConstraint';
 
 const fmtReqs = flow(
-  map(fmtReq),
+  map(displayRequirement),
   map(reqStr => reqStr[0].toUpperCase().concat(reqStr.substr(1))),
 );
 

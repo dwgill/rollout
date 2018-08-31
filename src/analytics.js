@@ -25,10 +25,10 @@ import {
   SET_ROLL_IN_ORDER,
 } from './actions/types';
 import {
-  netModReqKind,
-  netScoreReqKind,
-  scoreReqKind,
-} from './util/requirements';
+  NET_MOD_CONSTRAINT,
+  NET_SCORE_CONSTRAINT,
+  SCORE_CONSTRAINT,
+} from './rollout-core/ConstraintKinds';
 
 const categories = {
   display: 'Display',
@@ -60,11 +60,11 @@ function fmtMod(num) {
 }
 
 const reqfmters = {
-  [netModReqKind]: ({ limit, value }) =>
+  [NET_MOD_CONSTRAINT]: ({ limit, value }) =>
     `netMod_${fmtLimitValue(limit, fmtMod(value))}`,
-  [netScoreReqKind]: ({ limit, value }) =>
+  [NET_SCORE_CONSTRAINT]: ({ limit, value }) =>
     `netScore_${fmtLimitValue(limit, value)}`,
-  [scoreReqKind]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
+  [SCORE_CONSTRAINT]: ({ numScoresLimit, numScores, scoreLimit, score }) => {
     const fmtNumScoresLimit = fmtLimitValue(numScoresLimit, numScores);
     const fmtScoresLimit = fmtLimitValue(scoreLimit, score);
     return `scores_${fmtNumScoresLimit}${fmtScoresLimit}`;
@@ -176,6 +176,7 @@ const eventsMap = {
   })),
 };
 
+// This next value is supplied at compile time via env variable through the create-react-app buildpack
 const analyticsID = process.env.REACT_APP_ANALYTICS_ID;
 const ga = GoogleAnalyticsGtag(analyticsID);
 

@@ -1,10 +1,10 @@
-import React from 'react';
-import range from 'lodash/fp/range';
 import map from 'lodash/fp/map';
-import styles from './styles.module.css';
+import range from 'lodash/fp/range';
+import React from 'react';
+import { limits as validLimits } from '../../../../../rollout-core/ConstraintKinds';
 import Field from '../../../../Field';
 import Select from '../../../../Select';
-import { reqLimitValues as validLimits } from '../../../../../util/requirements';
+import styles from './styles.module.css';
 
 const mapNumsToOpts = map(num => (
   <option key={num} value={num}>

@@ -1,5 +1,5 @@
 import { attributeRollType as getAttributeRollType } from '.';
-import { AUGMENTED } from '../util/attributeRolls';
+import { AUGMENTED } from '../rollout-core/AttributeRollKinds';
 
 /**
  * Determine the minimum possible total of all the scores given

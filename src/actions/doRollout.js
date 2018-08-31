@@ -1,38 +1,27 @@
-import flow from 'lodash/fp/flow';
-import map from 'lodash/fp/map';
-import overEvery from 'lodash/fp/overEvery';
-import { convertReqToPredicate } from '../util/requirements';
-import rollout from '../util/rollout';
+import doRolloutCore from '../rollout-core/doRollout';
 import { DO_ROLLOUT, FAIL_ROLLOUT } from './types';
 
 const doRollout = () => (dispatch, getState) => {
   const { attributeRollType, requirements } = getState();
 
-  const checkRollout = flow(map(convertReqToPredicate), overEvery)(
-    requirements,
-  );
+  const { numRolls, rollout } = doRolloutCore({
+    constraints: requirements,
+    attributeRoll: attributeRollType,
+    tolerance: 500,
+  });
 
-  const doRoll = () => rollout({ rollType: attributeRollType });
-
-  let numRolls;
-  for (numRolls = 1; numRolls <= 500; ++numRolls) {
-    const newRollout = doRoll();
-    if (checkRollout(newRollout)) {
-      dispatch({
-        type: DO_ROLLOUT,
-        payload: {
-          newRollout,
-          numRolls,
-        },
-      });
-      break;
-    }
-  }
-
-  if (numRolls > 500) {
+  if (!rollout) {
     dispatch({
       type: FAIL_ROLLOUT,
-      payload: numRolls - 1,
+      payload: numRolls,
+    });
+  } else {
+    dispatch({
+      type: DO_ROLLOUT,
+      payload: {
+        numRolls,
+        newRollout: rollout,
+      },
     });
   }
 };

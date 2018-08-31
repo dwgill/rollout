@@ -1,12 +1,6 @@
 import range from 'lodash/fp/range';
-import { netModReq, netScoreReq, scoreReq } from '../util/requirements';
 import removeRequirement from './removeRequirement';
 import { REMOVE_REQUIREMENT } from './types';
-
-const mockNetModReq = netModReq('AT_LEAST', 2);
-const mockNetScoreReq = netScoreReq('AT_MOST', 71);
-const mockScoreReq = scoreReq('EXACTLY', 1, 'AT_MOST', 10);
-const mockReqs = [mockNetModReq, mockNetScoreReq, mockScoreReq];
 
 describe('removeRequirement()', () => {
   it('produces an action object with the REMOVE_REQUIREMENT type', () => {

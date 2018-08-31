@@ -4,7 +4,7 @@ import map from 'lodash/fp/map';
 import styles from './styles.module.css';
 import Field from '../../../../Field';
 import Select from '../../../../Select';
-import { reqLimitValues as validLimits } from '../../../../../util/requirements';
+import { limits as validLimits} from '../../../../../rollout-core/ConstraintKinds';
 
 const validNumScores = range(0, 7);
 
