@@ -21,6 +21,7 @@ import {
   REPLACE_REQUIREMENTS,
   SET_ATTRIBUTE_ROLL_TYPE,
   SET_DISPLAY_DICE,
+  SET_DISPLAY_MODS,
   SET_FORCE_STALE,
   SET_ROLL_IN_ORDER,
 } from './actions/types';
@@ -95,6 +96,12 @@ const eventsMap = {
     label: payload,
   })),
   [SET_ROLL_IN_ORDER]: trackEvent(({ type, payload }) => ({
+    category: categories.display,
+    action: type,
+    // value: null,
+    label: payload,
+  })),
+  [SET_DISPLAY_MODS]: trackEvent(({ type, payload }) => ({
     category: categories.display,
     action: type,
     // value: null,
