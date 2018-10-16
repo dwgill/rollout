@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/dwgill/rollout.svg?branch=master)](https://travis-ci.com/dwgill/rollout)
 # Rollout
 A(nother) Dungeons & Dragons attribute generator.
 
