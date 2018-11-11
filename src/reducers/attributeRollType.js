@@ -4,7 +4,7 @@ import * as rollTypes from '../rollout-core/AttributeRollKinds';
 
 const validTypes = keys(rollTypes);
 
-const initialState = validTypes.slice(-1).pop();
+const initialState = rollTypes.STANDARD;
 
 const rolloutTypeReducer = (state = initialState, action) => {
   switch (action.type) {
