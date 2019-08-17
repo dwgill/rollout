@@ -8,7 +8,7 @@
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "bulma": "^0.6.2",
     "classnames": "^2.2.5",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.13",
     "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
