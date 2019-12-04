@@ -1,0 +1,9 @@
+# These rules will change if you change your site’s custom domains or HTTPS settings
+
+# Redirect domain aliases to primary domain
+https://www.dwgill.com/* https://rollout.dwgill.com/:splat 301!
+https://blog.dwgill.com/* https://rollout.dwgill.com/:splat 301!
+https://dwgill.com/* https://rollout.dwgill.com/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://rollout-dwgill.netlify.com/* https://rollout.dwgill.com/:splat 301!
