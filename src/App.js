@@ -5,6 +5,8 @@ import thunk from 'redux-thunk';
 import analyticsReduxMiddleware from './analytics';
 import Home from './pages/Home';
 import reducers from './reducers';
+import { QueryParamProvider } from 'use-query-params';
+import history from './history';
 import 'bulma/css/bulma.css';
 
 const middleware = [thunk, analyticsReduxMiddleware];
@@ -17,9 +19,11 @@ const store = createStore(
 );
 
 const App = () => (
-  <Provider store={store}>
-    <Home />
-  </Provider>
+  <QueryParamProvider history={history}>
+    <Provider store={store}>
+      <Home />
+    </Provider>
+  </QueryParamProvider>
 );
 
 export default App;
