@@ -7,7 +7,6 @@ import {
   AT_MOST,
   EXACTLY,
 } from '../rollout-core/ConstraintKinds';
-import { Exception } from 'handlebars';
 
 const addRequirement = newReq => ({
   type: ADD_REQUIREMENT,
@@ -54,7 +53,7 @@ function parseLimitStr(limitStr) {
   } else if (adjustedLimitString === EXACTLY) {
     return EXACTLY;
   } else {
-    throw new Exception(`invalid limit string: ${limitStr}`);
+    throw new Error(`invalid limit string: ${limitStr}`);
   }
 }
 
