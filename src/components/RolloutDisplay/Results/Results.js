@@ -21,7 +21,7 @@ const Results = () => {
   } else if (orderedScores) {
     return <Vertical />;
   } else {
-    return <Unordered />;
+    return <Horizontal />;
   }
 };
 
