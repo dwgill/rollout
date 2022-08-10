@@ -9,7 +9,7 @@ import Failure from './Failure';
 import Horizontal from './Horizontal';
 import Vertical from './Vertical';
 
-const Results = ({ rolloutFailed, noAttributes, orderedScores }) => {
+const Results = () => {
   const rolloutFailed = useSelector(determineRolloutHasFailed);
   const noAttributes = useSelector(determineNoAttributes);
   const orderedScores = useSelector(determineVerticallyPresentedScores);
