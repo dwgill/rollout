@@ -2,10 +2,19 @@ import cls from 'classnames';
 import entries from 'lodash/fp/entries';
 import isEmpty from 'lodash/fp/isEmpty';
 import sum from 'lodash/fp/sum';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import calcMod from '../../../../rollout-core/calculateModifier';
 import orderAttributesByName from '../../../../util/orderAttributesByName';
 import styles from './styles.module.css';
+import {
+  displayDice as determineDisplayDice,
+  displayMods as determineDisplayMods,
+  rollInOrder as determineRollInOrder,
+  rolloutAttributes as getRolloutAttributes,
+  rolloutIsStale as determineRolloutIsStale,
+  displayHighToLow as determineDisplayHighToLow,
+} from '../../../../selectors';
 
 const fmtAttrDice = ({ constituents, discarded }) => {
   const included = `(${constituents.join(', ')})`;
@@ -17,7 +26,7 @@ const fmtAttrDice = ({ constituents, discarded }) => {
   return `${included} ${notIncluded}`;
 };
 
-const fmtMod = score => {
+const fmtMod = (score) => {
   const mod = calcMod(score);
   return mod >= 0 ? `(+${mod})` : `(${mod})`;
 };
@@ -27,8 +36,9 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
   attr,
 ]) => {
   const score = sum(attr.constituents);
-  const numSettings = [displayDice, displayMods, displayAttNames].filter(x => x)
-    .length;
+  const numSettings = [displayDice, displayMods, displayAttNames].filter(
+    (x) => x,
+  ).length;
   const className = cls({
     [styles.staleAttribute]: stale,
     [styles.attribute]: !stale,
@@ -46,15 +56,28 @@ const mkRenderRow = ({ displayDice, displayMods, displayAttNames, stale }) => ([
   );
 };
 
-const OrderedView = ({
-  stale,
-  attributes,
-  displayDice,
-  displayMods,
-  displayAttNames,
-}) => {
+export default function Vertical() {
+  const stale = useSelector(determineRolloutIsStale);
+  const attributes = useSelector(getRolloutAttributes);
+  const displayDice = useSelector(determineDisplayDice);
+  const displayMods = useSelector(determineDisplayMods);
+  const displayAttNames = useSelector(determineRollInOrder);
+  const displayHighToLow = useSelector(determineDisplayHighToLow);
+
   const verboseAttNames = displayAttNames && !(displayDice || displayMods);
-  const scoresByName = orderAttributesByName(attributes, verboseAttNames);
+  const scoreEntries = useMemo(() => {
+    const scoresByName = orderAttributesByName(attributes, verboseAttNames);
+    let scoreEntries = entries(scoresByName);
+    if (displayHighToLow) {
+      scoreEntries = [...scoreEntries].sort(([attr1Name, attr1], [attr2Name, attr2]) => {
+        const score1 = sum(attr1.constituents);
+        const score2 = sum(attr2.constituents);
+        return score2 - score1;
+      });
+    }
+    return scoreEntries;
+  }, [attributes, verboseAttNames, displayHighToLow]);
+
   const renderRow = mkRenderRow({
     stale,
     displayDice,
@@ -63,9 +86,7 @@ const OrderedView = ({
   });
   return (
     <div className={styles.container}>
-      {entries(scoresByName).map(renderRow)}
+      {scoreEntries.map(renderRow)}
     </div>
   );
 };
-
-export default OrderedView;

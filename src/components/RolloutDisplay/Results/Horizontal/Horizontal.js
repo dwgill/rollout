@@ -13,7 +13,7 @@ const renderAtt = (stale) => (attr, index, list) => (
   </p>
 );
 
-const UnorderedView = () => {
+const Horizontal = () => {
   const attributes = useSelector(getRolloutAttributes);
   const stale = useSelector(determineRolloutIsStale);
   const displayHighToLow = useSelector(getDisplayHighToLow);
@@ -31,4 +31,4 @@ const UnorderedView = () => {
   );
 };
 
-export default UnorderedView;
+export default Horizontal;
