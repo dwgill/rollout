@@ -19,3 +19,4 @@ export {
   default as verticallyPresentedScores,
 } from './verticallyPresentedScores';
 export { default as numRollsForLastRollout } from './numRollsForLastRollout';
+export { default as displayHighToLow } from './displayHighToLow';

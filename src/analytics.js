@@ -21,6 +21,7 @@ import {
   REPLACE_REQUIREMENTS,
   SET_ATTRIBUTE_ROLL_TYPE,
   SET_DISPLAY_DICE,
+  SET_DISPLAY_HIGH_TO_LOW,
   SET_DISPLAY_MODS,
   SET_FORCE_STALE,
   SET_ROLL_IN_ORDER,
@@ -97,6 +98,11 @@ const eventsMap = {
   })),
   [SET_ROLL_IN_ORDER]: trackEvent(({ type, payload }) => ({
     category: categories.display,
+    action: type,
+    // value: null,
+    label: payload,
+  })),
+  [SET_DISPLAY_HIGH_TO_LOW]: trackEvent(({ type, payload }) => ({
     action: type,
     // value: null,
     label: payload,

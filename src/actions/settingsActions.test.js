@@ -1,4 +1,5 @@
 import setDisplayDice from './setDisplayDice';
+import setDisplayHighToLow from './setDisplayHighToLow';
 import setDisplayMods from './setDisplayMods';
 import setForceStale from './setForceStale';
 import setRollInOrder from './setRollInOrder';
@@ -7,6 +8,7 @@ import {
   SET_DISPLAY_MODS,
   SET_FORCE_STALE,
   SET_ROLL_IN_ORDER,
+  SET_DISPLAY_HIGH_TO_LOW,
 } from './types';
 
 function testBooleanSetterActionCreator({
@@ -52,4 +54,10 @@ testBooleanSetterActionCreator({
   name: 'setDisplayMods',
   func: setDisplayMods,
   type: SET_DISPLAY_MODS,
+});
+
+testBooleanSetterActionCreator({
+  name: 'setDisplayHighToLow',
+  func: setDisplayHighToLow,
+  type: SET_DISPLAY_HIGH_TO_LOW,
 });

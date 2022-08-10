@@ -13,23 +13,28 @@ const SettingsView = ({
   displayDice,
   forceStale,
   displayMods,
-  onCheckDisplayDice: handleCheckDisplayDice,
-  onCheckRollInOrder: handleCheckRollInOrder,
-  onCheckRequireStale: handleCheckRequireStale,
-  onCheckDisplayMods: handleCheckDisplayMods,
+  displayHighToLow,
+  onCheckDisplayDice,
+  onCheckRollInOrder,
+  onCheckRequireStale,
+  onCheckDisplayMods,
+  onSetDisplayHighToLow,
 }) => (
   <>
     <SectionHeading>Settings</SectionHeading>
-    <Checkbox checked={displayMods} onCheck={handleCheckDisplayMods}>
+    <Checkbox checked={displayMods} onCheck={onCheckDisplayMods}>
       Display Attribute Modifiers
     </Checkbox>
-    <Checkbox checked={displayDice} onCheck={handleCheckDisplayDice}>
+    <Checkbox checked={displayDice} onCheck={onCheckDisplayDice}>
       Display Individual Dice
     </Checkbox>
-    <Checkbox checked={rollInOrder} onCheck={handleCheckRollInOrder}>
+    <Checkbox checked={rollInOrder} onCheck={onCheckRollInOrder}>
       Roll Dice in Order
     </Checkbox>
-    <Checkbox checked={forceStale} onCheck={handleCheckRequireStale}>
+    <Checkbox checked={displayHighToLow} onCheck={onSetDisplayHighToLow}>
+      Order Dice from High to Low
+    </Checkbox>
+    <Checkbox checked={forceStale} onCheck={onCheckRequireStale}>
       No arbitrary rerolls
     </Checkbox>
   </>

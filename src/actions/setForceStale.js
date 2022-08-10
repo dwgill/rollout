@@ -1,19 +1,12 @@
+import { createAction } from '@reduxjs/toolkit';
 import { SET_FORCE_STALE } from './types';
 
 /**
- * @typedef SET_FORCE_STALE
- * @prop {string} type
- * @prop {boolean} payload
+ * Creates an action indicating whether rollouts can only be initated
+ * if the rollout is stale.
  */
-
-/**
- * Creates an action indicating whether rollouts can only be initated if the rollout is stale.
- * @param {boolean} shouldForceStale
- * @returns {SET_DISPLAY_DICE} the action
- */
-const setForceStale = shouldRequireStale => ({
-  type: SET_FORCE_STALE,
-  payload: shouldRequireStale,
-});
+const setForceStale = createAction(SET_FORCE_STALE, (shouldRequireStale) => ({
+  payload: !!shouldRequireStale,
+}));
 
 export default setForceStale;

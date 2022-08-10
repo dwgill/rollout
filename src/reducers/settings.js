@@ -1,63 +1,40 @@
-import {
-  SET_DISPLAY_DICE,
-  SET_DISPLAY_MODS,
-  SET_FORCE_STALE,
-  SET_ROLL_IN_ORDER,
-} from '../actions/types';
+import { createReducer } from '@reduxjs/toolkit';
+import setDisplayDice from '../actions/setDisplayDice';
+import setDisplayHighToLow from '../actions/setDisplayHighToLow';
+import setDisplayMods from '../actions/setDisplayMods';
+import setForceStale from '../actions/setForceStale';
+import setRollInOrder from '../actions/setRollInOrder';
 
 const initialState = {
   rollInOrder: true,
+  displayHighToLow: false,
   displayDice: false,
   forceStale: true,
   displayMods: false,
 };
 
-const settingsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_DISPLAY_DICE: {
-      const { payload: newDisplayDice } = action;
-      const { displayDice: oldDisplayDice } = state;
-      return newDisplayDice === oldDisplayDice
-        ? state
-        : {
-            ...state,
-            displayDice: newDisplayDice,
-          };
+const settingsReducer = createReducer(initialState, (builder) => {
+  builder.addCase(setDisplayHighToLow, (state, action) => {
+    state.displayHighToLow = !!action.payload;
+    if (action.payload) {
+      state.rollInOrder = false;
     }
-    case SET_ROLL_IN_ORDER: {
-      const { payload: newRollInOrder } = action;
-      const { rollInOrder: oldRollInOrder } = state;
-      return newRollInOrder === oldRollInOrder
-        ? state
-        : {
-            ...state,
-            rollInOrder: newRollInOrder,
-          };
+  });
+  builder.addCase(setRollInOrder, (state, action) => {
+    state.rollInOrder = !!action.payload;
+    if (action.payload) {
+      state.displayHighToLow = false;
     }
-    case SET_FORCE_STALE: {
-      const { payload: newForceStale } = action;
-      const { forceStale: oldForceStale } = state;
-      return newForceStale === oldForceStale
-        ? state
-        : {
-            ...state,
-            forceStale: newForceStale,
-          };
-    }
-    case SET_DISPLAY_MODS: {
-      const { payload: newDisplayMods } = action;
-      const { displayMods: oldDisplayMods } = state;
-      return newDisplayMods === oldDisplayMods
-        ? state
-        : {
-            ...state,
-            displayMods: newDisplayMods,
-          };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+  });
+  builder.addCase(setDisplayDice, (state, action) => {
+    state.displayDice = !!action.payload;
+  });
+  builder.addCase(setForceStale, (state, action) => {
+    state.forceStale = !!action.payload;
+  });
+  builder.addCase(setDisplayMods, (state, action) => {
+    state.displayMods = !!action.payload;
+  });
+});
 
 export default settingsReducer;
